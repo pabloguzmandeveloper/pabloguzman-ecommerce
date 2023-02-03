@@ -1,8 +1,10 @@
-@import "common/_header.scss";
-@import "common/_main.scss";
-@import "common/_footer.scss";
-@import "common/_navbar.scss";
-@import "views/_aboutUs.scss";
-@import "views/_home.scss";
-@import "views/_productsList.scss";
-@import "views/_stores.scss";
+// @import "common/_header.scss";
+// @import "common/_main.scss";
+// @import "common/_footer.scss";
+@import "../components/common/_navbar.scss";
+// @import "views/_aboutUs.scss";
+// @import "views/_home.scss";
+// @import "views/_productsList.scss";
+// @import "views/_stores.scss";
+
+// sass --watch src/styles/style.scss src/styles/style.css

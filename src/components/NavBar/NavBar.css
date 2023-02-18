@@ -1,0 +1,132 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  padding: 0;
+}
+
+#NavBar {
+  display: block;
+  /* text-align: center; */
+  /* direction: column; */
+  /* align-items: center; */
+  width: 100vw;
+  height: 50vh;
+}
+
+.nbContainer {
+  display: flex;
+  /* position: absolute; */
+  /* top: 3vw;
+  right: 10vw; */
+  justify-content: space-around;
+  align-items: center;
+  /* margin-right: 0; */
+}
+
+
+.btnMenu {
+  height: 40px;
+  /* display: flex; */
+  /* text-align: right; */
+  /* margin-right:0; */
+  /* position: absolute; */
+  z-index: 1;
+}
+
+#navbar__menu {
+  position:absolute;
+  margin-top: -21vw;
+  transform: translateX(-105vw);
+  transition: transform 400ms ease-in;
+  width: 90vw;
+  color: white;
+  height: 50vh;
+  background-color: rgb(38, 182, 43);
+  font-family: sans-serif;
+}
+
+.logo {
+  margin-top: 3vw;
+  right: 10vw;
+  width: 20vw;
+}
+
+.menuLogo {
+  display: flex;
+  justify-content: center;
+  width: 90vw;
+}
+
+.logoWhite{  
+  width: 50vw;
+}
+
+  #navbar__menu.slideIn {
+    transform: translateX(5vw);
+  }
+
+  #navbar__menu.slideOut {
+    transform: translateX(-90vw);
+  }
+
+  @-webkit-keyframes swing {
+    0%{
+      -webkit-transform: translateX(10vw);
+      transform: translateX(10vw)
+    }
+    15%{
+        -webkit-transform: translateX(0vw);
+        transform: translateX(0vw);
+    }
+    50%{
+        -webkit-transform: translateX(0vw);
+        transform: translateX(0vw);
+    }
+    70%{
+        -webkit-transform: translateX(8vw);
+        transform: translateX(8vw);
+    }
+    100%{
+        -webkit-transform: translateX(5vw);
+        transform: translateX(5vw);
+    }
+}
+
+@keyframes swing {
+  0%{
+    -webkit-transform: translateX(10vw);
+    transform: translateX(10vw)
+  }
+  15%{
+      -webkit-transform: translateX(20vw);
+      transform: translateX(20vw);
+  }
+  50%{
+      -webkit-transform: translateX(0vw);
+      transform: translateX(0vw);
+  }
+  70%{
+      -webkit-transform: translateX(8vw);
+      transform: translateX(8vw);
+  }
+  100%{
+      -webkit-transform: translateX(5vw);
+      transform: translateX(5vw);
+  }
+} 
+
+.swing {
+  -webkit-animation: swing 1s ease;
+  animation: swing 1s ;
+  animation-delay: 400ms;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
+
+.item-list-container-title {
+  font-size: 14px;
+  text-align: center;
+}

@@ -1,27 +1,24 @@
-import Navbar from './components/common/Navbar.jsx';
-import './styles/style.css'
+import {BrowserRouter} from 'react-router-dom';
+import './App.css';
+import NavBar from './components/NavBar';
+import { ItemListContainer } from './components/ItemListContainer';
+import { RouterApp } from './router/RouterApp';
 
+const h2Style= {
+  color: 'orange',
+  background: 'green',
+  textAlign: 'center',
+  fontSize: '18px'
+};
+
+// los estilos en linea de los componentes se pasan únicamente en formato de objetos y con nombre de atributos en camelcase y el greeting lo he dejado aquí por la consigna de primer entrega, no lo necesito porque me renderiza dos veces el ItemLisContainer.
 function App() {
   return (
-    <Navbar/>
-    // <div className="App">
-      
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
+    <BrowserRouter>      
+      <NavBar/>
+      <ItemListContainer style={h2Style} greeting={"Hola!!! buenos días!! Bienvenido a nuestro E-Comosano!!"}/>
+      <RouterApp />
+    </BrowserRouter>
   );
 }
-
 export default App;

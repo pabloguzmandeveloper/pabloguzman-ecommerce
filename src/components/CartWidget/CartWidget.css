@@ -1,0 +1,16 @@
+.cart-widget {
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 15vw;
+  }
+  
+  .qty-display {
+    display: inline-block;
+    width: 18px;
+    background-color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    position: absolute;
+    text-align: center;
+  }  

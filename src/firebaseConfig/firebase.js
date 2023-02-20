@@ -1,38 +1,19 @@
-// // Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// import {getFirestore} from "@firebase/firestore"
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
-
-// // Your web app's Firebase configuration
-
-// // aca va tu codigo de FIREBASE
-
-
-
-
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-
-// export const db = getFirestore(app)
-
-// // Import the functions you need from the SDKs you need
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {getFirestore} from "@firebase/firestore";
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDoxPBtDpAv8SFAnISDOfY3qx75qauQrbE",
-  authDomain: "preentrega2-guzman.firebaseapp.com",
-  projectId: "preentrega2-guzman",
-  storageBucket: "preentrega2-guzman.appspot.com",
-  messagingSenderId: "940357321068",
-  appId: "1:940357321068:web:2a9be3ec49ea95b9cef349"
+  apiKey: "AIzaSyCFI6OwCbtM4y6k7KNiUB7zVP9gN2UbcAo",
+  authDomain: "pabloguzam-ecommerce.firebaseapp.com",
+  projectId: "pabloguzam-ecommerce",
+  storageBucket: "pabloguzam-ecommerce.appspot.com",
+  messagingSenderId: "5004127876",
+  appId: "1:5004127876:web:febf3da39048f0fff09cd1"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-export const db = getFirestore(app)
+export const dbComosano = getFirestore(app)

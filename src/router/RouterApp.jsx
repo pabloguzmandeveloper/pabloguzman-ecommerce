@@ -12,7 +12,10 @@ export const RouterApp = () => {
         <>
             <Routes>
                 <Route path="/aboutus"              element={<AboutUs />}></Route>
-                <Route path="/"                     element={<ItemListContainer />}></Route>
+                <Route path="/"                     element={<ItemListContainer style={{color: "orange",
+  background: "green",
+  textAlign: "center",
+  fontSize: "18px"}} greeting={"Hola!!! buenos días!! Bienvenido a nuestro E-Comosano!!"} />}></Route>
                 <Route path="/category/:categoryId" element={<ItemListContainer />}></Route>
                 <Route path="/item/:productId"      element={<ItemDetailContainer />}></Route>
                 <Route path="/productslist"         element={<ProductsList/>}></Route>

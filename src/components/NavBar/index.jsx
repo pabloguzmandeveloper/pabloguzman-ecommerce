@@ -11,10 +11,18 @@ import { Link } from "react-router-dom";
 const NavigationBar = ({ visible }) => (
     <div id="navbar__menu" className={visible ? 'slideIn swing' : 'slideOut'} >
         <ul>
-            <Link to='/tobuy'>Comprar por Whatsapp</Link>
-            <Link to='/productslist'>Lista de productos</Link>
-            <Link to='/stores'>Sucursales</Link>
-            <Link to='/aboutus'>Acerca de nosotros</Link>
+            <li>
+                <Link to='/tobuy'>Comprar por Whatsapp</Link>
+            </li>
+            <li>
+                <Link to='/productslist'>Lista de productos</Link>
+            </li>
+            <li>
+                <Link to='/stores'>Sucursales</Link>
+            </li>
+            <li>
+                <Link to='/aboutus'>Acerca de nosotros</Link>
+            </li>
         </ul>
         <div className='menuLogo'>
             <img className="logoWhite" src={LogoWhite} alt="COMOSANO" />

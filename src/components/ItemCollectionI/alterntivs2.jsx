@@ -12,7 +12,62 @@ export const ItemCollection = (props) => {
     const [ categories, setCategories ] = useState([]);
     // 2 referenciamos la db de firestore
     const dbComosanoFirestore = collection(dbComosano,"comosanoProductos")
-    // 3 la funcion para mostrar todos los docs la creamos dentro del hook por ahorrar pasos de asincronía
+    // 3 funcion para mostrar todos los docs
+    // const getProducts = async () => {
+    //     try {
+    //         setLoading(true);
+    //         const data = await getDocs(dbComosanoFirestore);
+    //         setCategories(data.docs.map((doc) =>({...doc.data(),id:doc.id})));
+    //         setLoading(false);
+    //     } catch (error) {
+    //         setLoading(false);
+    //         setError(error);
+    //     }
+    // }
+    // console.log(categories)
+    // useEffect(() => {
+    //     const data1 = getProducts()
+    //     if(categoryId) {
+    //         data1.then(resultado => {
+    //             const nuevaLista = resultado.filter(item=>item.categ === categoryId);
+    //             setCategories(nuevaLista)
+    //             console.log(nuevaLista)
+    //         })
+    //             .catch(err => {setError(err); console.log(err)})
+    //     } else {
+    //         data1.then(resultado => {
+    //             setCategories(resultado)
+    //         })
+    //             .catch(err => {setError(err);console.log(err)})
+    //     }
+
+    // }, [categoryId])
+
+    // useEffect(() => {
+    //     const promesa = await getProducts()
+                    
+    //     promesa.then(resultado=>{            
+    //         if(!categoryId){                
+    //             setCategories(resultado)
+    //         } else{
+    //             console.log(resultado)
+    //             const nuevaLista = resultado.filter(item=>item.categ === categoryId);
+    //             setCategories(nuevaLista)
+    //             console.log(nuevaLista)
+    //         }
+    //     })
+        
+    // },[categoryId])
+
+
+    // ahora funciona todo con esta alternativa de abajo, resulta que la función getProducts creada en un principio para usarla dentro del useEffect 
+    // El método filter puede trabajar con una promesa, pero el problema en este caso es que la función getProducts no devuelve una promesa explícita, sino que utiliza la sintaxis async/await para manejar la promesa internamente.
+
+// En otras palabras, la función getProducts no devuelve una promesa que se pueda usar para encadenar métodos de promesa adicionales, como then y catch. En su lugar, utiliza la palabra clave await para esperar que se resuelva la promesa internamente.
+
+// Por lo tanto, en el useEffect, la constante promesa es en realidad el valor devuelto por la función getProducts, que es undefined, en lugar de la promesa real que se espera.
+
+// En lugar de eso, deberías utilizar el enfoque de async/await dentro del useEffect, en lugar de intentar encadenar promesas. Algo como esto:
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -30,7 +85,7 @@ export const ItemCollection = (props) => {
         fetchData();
     }, [categoryId]);
 
-    // los detalles se rompen porque la ruta de renderizado está vinculada a ItemListContainer? Ahora con esta solución no, desconocemos, será porque solucionamos la falla en la asincronía
+    // los detalles se rompen porque la ruta de renderizado está vinculada a ItemListContainer?
 
     return(
         <div className="item-list-container">
@@ -119,3 +174,15 @@ export const ItemCollection = (props) => {
         </div>
     )
 }
+
+// getProducts.then(resultado => {
+//     if(!categoryId){                
+//         setCategories(resultado)
+//     } else{
+//         // console.log(resultado)
+//         const nuevaLista = resultado.filter(item=>item.categ === categoryId);
+//         setCategories(nuevaLista)
+//         console.log(nuevaLista)
+//     }
+// })
+// },[categoryId])

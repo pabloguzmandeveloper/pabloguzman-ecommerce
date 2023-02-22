@@ -5,7 +5,7 @@
 // import { dbComosano } from '../../firebaseConfig/firebase';
 // import Swal from 'sweetalert2';
 // import withReactContent from 'sweetalert2-react-content';
-import { ItemCollection } from "../ItemCollectionI";
+import { ItemCollection } from "../ItemCollectionI/alterntivs2";
 
 export const ItemListContainer = ()=>{
 

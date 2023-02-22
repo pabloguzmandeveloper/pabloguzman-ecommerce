@@ -1,6 +1,6 @@
 [
     {
-        "categ":"flours",
+        "categ":"harinas",
         "title": "HARINA DE MAIZ Y VARIOS",
         "id":11,
         "name":"Cosaco",
@@ -11,7 +11,7 @@
         "price":550
     },
     {
-        "categ":"flours",
+        "categ":"harinas",
         "title": "HARINA DE MAIZ Y VARIOS",
         "id":2,
         "name":"Morixe",
@@ -22,7 +22,7 @@
         "price":440
     },
     {
-        "categ":"flours",
+        "categ":"harinas",
         "title": "HARINA DE MAIZ Y VARIOS",
         "id":3,
         "name":"Harina Pan",
@@ -33,7 +33,7 @@
         "price":480
     },
     {
-        "categ":"flours",
+        "categ":"harinas",
         "title": "HARINA DE MAIZ Y VARIOS",
         "id":4,
         "name":"Arcor Presto Pronto",
@@ -44,7 +44,7 @@
         "price":370
     },
     {
-        "categ":"flours",
+        "categ":"harinas",
         "title": "HARINA DE MAIZ Y VARIOS",
         "id":5,
         "name":"Nieve",
@@ -55,7 +55,7 @@
         "price":370
     },
     {
-        "categ":"flours",
+        "categ":"harinas",
         "title": "HARINA DE MAIZ Y VARIOS",
         "id":6,
         "name":"Mezcla de cachapas",
@@ -66,7 +66,7 @@
         "price":370
     },
     {
-        "categ":"flours",
+        "categ":"harinas",
         "title": "HARINA DE MAIZ Y VARIOS",
         "id":7,
         "name":"Aji dulce",
@@ -77,7 +77,7 @@
         "price":900
     },
     {
-        "categ":"flours",
+        "categ":"harinas",
         "title": "HARINA DE MAIZ Y VARIOS",
         "id":8,
         "name":"Yuca",
@@ -88,7 +88,7 @@
         "price":250
     },
     {
-        "categ":"flours",
+        "categ":"harinas",
         "title": "HARINA DE MAIZ Y VARIOS",
         "id":9,
         "name":"Ocumo",
@@ -101,7 +101,7 @@
 
     {
         "title": "FRUTAS",
-        "categ":"fruits",
+        "categ":"frutas",
         "id":10,
         "name":"Plátano",
         "img":"../../images/frutas.jpg",
@@ -112,7 +112,7 @@
     },
     {
         "title": "FRUTAS",
-        "categ":"fruits",
+        "categ":"frutas",
         "id":11,
         "name":"Mango",
         "img":"../../images/frutas.jpg",
@@ -123,7 +123,7 @@
     },
     {   
         "title": "QUESOS",
-        "categ":"cheeses",
+        "categ":"quesos",
         "id":12,
         "name":"Semiduro tovareño",
         "img":"../../images/quesos.jpg",
@@ -134,7 +134,7 @@
     },
     {   
         "title": "QUESOS",
-        "categ":"cheeses",
+        "categ":"quesos",
         "id":13,
         "name":"Duro tovareño",
         "img":"../../images/quesos.jpg",
@@ -145,7 +145,7 @@
     },
     {   
         "title": "QUESOS",
-        "categ":"cheeses",
+        "categ":"quesos",
         "id":14,
         "name":"De mano la zuliana x 425Grs.",
         "img":"../../images/quesos.jpg",
@@ -156,7 +156,7 @@
     },
     {   
         "title": "QUESOS",
-        "categ":"cheeses",
+        "categ":"quesos",
         "id":15,
         "name":"Queso añejo x 100Grs.",
         "img":"../../images/quesos.jpg",
@@ -167,7 +167,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":16,
         "name":"Cheez Whix",
         "img":"../../images/salsas.jpg",
@@ -178,7 +178,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":17,
         "name":"Nata Zuliana Gr.",
         "img":"../../images/salsas.jpg",
@@ -189,7 +189,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":18,
         "name":"Nati Rica Gr",
         "img":"../../images/salsas.jpg",
@@ -200,7 +200,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":19,
         "name":"Nati Rica Peq",
         "img":"../../images/salsas.jpg",
@@ -211,7 +211,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":20,
         "name":"Suero",
         "img":"../../images/salsas.jpg",
@@ -222,7 +222,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":21,
         "name":"Guasacaca x 300cc",
         "img":"../../images/salsas.jpg",
@@ -233,7 +233,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":22,
         "name":"Salsa Inglesa",
         "img":"../../images/salsas.jpg",
@@ -244,7 +244,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":23,
         "name":"Salsa de Soja",
         "img":"../../images/salsas.jpg",
@@ -255,7 +255,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":24,
         "name":"Salsa de Ajo",
         "img":"../../images/salsas.jpg",
@@ -266,7 +266,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":25,
         "name":"Adobo Sazón",
         "img":"../../images/salsas.jpg",
@@ -277,7 +277,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":26,
         "name":"Ajo en polvo",
         "img":"../../images/salsas.jpg",
@@ -288,7 +288,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":27,
         "name":"Anis en grano",
         "img":"../../images/salsas.jpg",
@@ -299,7 +299,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":28,
         "name":"Vainil",
         "img":"../../images/salsas.jpg",
@@ -310,7 +310,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":29,
         "name":"Salsa Tártara tovareño",
         "img":"../../images/salsas.jpg",
@@ -321,7 +321,7 @@
     },
     {
         "title": "SALSAS Y CREMAS",
-        "categ":"soucescreams",
+        "categ":"salsas_y_cremas",
         "id":30,
         "name":"Mantequilla Dánica",
         "img":"../../images/salsas.jpg",
@@ -332,7 +332,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":31,
         "name":"Tamarindo",
         "img":"../../images/bebidas.jpg",
@@ -343,7 +343,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":32,
         "name":"Grand Old Parr",
         "img":"../../images/bebidas.jpg",
@@ -354,7 +354,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":33,
         "name":"Malta 58cc",
         "img":"../../images/bebidas.jpg",
@@ -365,7 +365,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":34,
         "name":"Rekolita",
         "img":"../../images/bebidas.jpg",
@@ -376,7 +376,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":35,
         "name":"Rekopiña",
         "img":"../../images/bebidas.jpg",
@@ -387,7 +387,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":36,
         "name":"Breez de durazno 1kg",
         "img":"../../images/bebidas.jpg",
@@ -398,7 +398,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":37,
         "name":"Pops Tea 1kg",
         "img":"../../images/bebidas.jpg",
@@ -409,7 +409,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":38,
         "name":"Ron Gran Reserva",
         "img":"../../images/bebidas.jpg",
@@ -420,7 +420,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":39,
         "name":"Botran 18",
         "img":"../../images/bebidas.jpg",
@@ -431,7 +431,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":40,
         "name":"Botran 15",
         "img":"../../images/bebidas.jpg",
@@ -442,7 +442,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":41,
         "name":"Anis 8 hermanos",
         "img":"../../images/bebidas.jpg",
@@ -453,7 +453,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":42,
         "name":"Ron 1796",
         "img":"../../images/bebidas.jpg",
@@ -464,7 +464,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":43,
         "name":"Diplomático Mantuano",
         "img":"../../images/bebidas.jpg",
@@ -475,7 +475,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":44,
         "name":"Diplomático reserva exclusiva",
         "img":"../../images/bebidas.jpg",
@@ -486,7 +486,7 @@
     },
     {
         "title": "BEBIDAS Y MÁS",
-        "categ":"drinks",
+        "categ":"bebidas",
         "id":45,
         "name":"Pulpa de Guanabana 500grs.",
         "img":"../../images/bebidas.jpg",
@@ -497,7 +497,7 @@
     },
     {   
         "title": "GOLOSINAS",
-        "categ":"candies",
+        "categ":"golosinas",
         "id":51,
         "name":"Obleas grandes",
         "img":"../../images/golosinas.jpg",
@@ -508,7 +508,7 @@
     },
     {
         "title": "GOLOSINAS",
-        "categ":"candies",
+        "categ":"golosinas",
         "id":52,
         "name":"Obleas pequeñas",
         "img":"../../images/golosinas.jpg",
@@ -519,7 +519,7 @@
     },
     {   
         "title": "VARIOS",
-        "categ":"more",
+        "categ":"varios",
         "id":53,
         "name":"Pan arabe Gr.700grs.",
         "img":"../../images/varios.jpg",
@@ -530,7 +530,7 @@
     },
     {
         "title": "VARIOS",
-        "categ":"more",
+        "categ":"varios",
         "id":54,
         "name":"Pan arabe Peq.500grs.",
         "img":"../../images/varios.jpg",

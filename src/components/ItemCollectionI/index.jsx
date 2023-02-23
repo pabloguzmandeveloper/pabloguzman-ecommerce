@@ -4,7 +4,7 @@ import { useParams , Link } from "react-router-dom";
 import { collection , getDocs , deleteDoc , doc } from "firebase/firestore"; //métodos de firestore para crear los módulos de consulta y pedidos a firestore
 import { dbComosano } from '../../firebaseConfig/firebase.js';
 
-export const ItemCollection = (props) => {
+export const ItemCollectionI = (props) => {
     const {categoryId} = useParams();
     // 1 configurarmos hooks
     const [ loading , setLoading] = useState([false]);
@@ -18,8 +18,8 @@ export const ItemCollection = (props) => {
             try {
                 setLoading(true);
                 const data = await getDocs(dbComosanoFirestore);
-                const categories = data.docs.map((doc) =>({...doc.data(),id:doc.id}));
-                setCategories(categories.filter(item => !categoryId || item.categ === categoryId));
+                const categories1 = data.docs.map((doc) =>({...doc.data(),id:doc.id}));
+                setCategories(categories1.filter(item => !categoryId || item.categ === categoryId));
                 setLoading(false);
             } catch (error) {
                 setLoading(false);

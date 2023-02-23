@@ -5,12 +5,11 @@
 // import { dbComosano } from '../../firebaseConfig/firebase';
 // import Swal from 'sweetalert2';
 // import withReactContent from 'sweetalert2-react-content';
-import { ItemCollection } from "../ItemCollectionI/alterntivs2";
+import { ItemCollectionI } from "../ItemCollectionI";
 
 export const ItemListContainer = ()=>{
-
     return(
-        <ItemCollection style={{color: "orange",
+        <ItemCollectionI style={{color: "orange",
         background: "green",
         textAlign: "center",
         fontSize: "18px"}} greeting={"Hola!!! buenos días!! Bienvenido a nuestro E-Comosano!!"} />

@@ -1,10 +1,4 @@
-import bebidas from "../../images/bebidas.jpg";
-import frutas from "../../images/frutas.jpg";
-import golosinas from "../../images/golosinas.jpg";
-import harinas from "../../images/harinas.jpg";
-import quesos from "../../images/quesos.jpg";
-import salsas from "../../images/salsas.jpg";
-import varios from "../../images/varios.jpg";
+import { imagesMap } from '../../images/imagesMap.js'
 import './index.css';
 import { Link } from "react-router-dom";
 
@@ -16,7 +10,7 @@ export const Item = ({product}) => {
                 <div>
                     <h4>{product.name}</h4>                    
                     <p>Desde ${product.price}</p>
-                    <img className="img-item" src={`${product.categ}`} alt={product.categ} />
+                    <img className="img-item" src={imagesMap[product.categ]} alt={product.categ} />
                 </div> 
             </Link>
         </>

@@ -3,7 +3,7 @@ import './index.css';
 import { useEffect , useState } from 'react';
 import { useParams , Link } from 'react-router-dom';//cuidado que retorna numeros en strings
 import { ItemDetail } from '../ItemDetail';
-import { collection , getDocs , doc } from "firebase/firestore"; //métodos de firestore para crear los módulos de consulta y pedidos a firestore
+import { collection , getDocs } from "firebase/firestore"; //métodos de firestore para crear los módulos de consulta y pedidos a firestore
 import { dbComosano } from '../../firebaseConfig/firebase.js';
 
 export const ItemDetailContainer = () => {
@@ -41,7 +41,7 @@ export const ItemDetailContainer = () => {
     <>
         {item.map((producto)=>{
             return (
-                <>
+                <div key={producto.id}>
                     <Link to={`/category/${producto.categ}`} >
                         <h3>{producto.title +" - seguir comprando"}</h3>
                     </Link>
@@ -49,7 +49,7 @@ export const ItemDetailContainer = () => {
                     <img className='img-detail' src={imagesMap[producto.categ]} alt={producto.categ} />
                     <h4>{producto.name}</h4>
                     <ItemDetail product={producto} />            
-                </>
+                </div>
             )
         })}            
     </>

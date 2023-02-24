@@ -1,45 +1,19 @@
-import { useState } from "react";
+import { UseContextAdd } from "../../CartContext";
+
+
 
 export const ItemCount = (props)=>{
-    let stock = props.stock;
-    
-    let [count, setCount] = useState(0);
-    let [cart,setCart] = useState(0)
+    // let stock = props.stock;
 
-    let down = ()=>{
-        if (stock>0&count<=stock){
-            count>0?setCount(count-1) :count=0;
-            setCart(count);
-        }else {
-            count=0
-            setCart(count)
-        }
-    };
+    // const down = UseContextAdd();
+    // const up = UseContextAdd();
+    // const onAdd = UseContextAdd();
+    // const count = UseContextAdd();
 
-    let up = ()=>{
-        if (stock>0&count<stock) {
-            setCount(count+1)
-            setCart(count);
-        }else {
-            count=stock
-            setCart(count)
-        }
-    };
+    const {down,up,onAdd} = UseContextAdd();
+    const [count,setCount] = UseContextAdd();
+    const [cart,setCart] = UseContextAdd();
 
-    let onAdd = ()=>{
-        if (cart>0) {
-            
-            setCart(count)
-            
-            setCount(0)
-            console.log(cart)
-            console.log(count)
-        }else {
-            setCart(0)            
-        }
-        console.log("se agregó al carrito "+ count)
-    }
-    // console.log("app se renderizará");
     return (
         <>
             <p>{count} x 1 {props.unit} = ${props.price*count}</p>

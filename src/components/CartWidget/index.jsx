@@ -7,7 +7,7 @@ const CartWidget = () => {
     return (
         <div className="cart-widget">
         <FontAwesomeIcon icon={faCartShopping} size="2x" color="green"  />
-        <div className="qty-display">5</div>
+        <div className="qty-display">0</div>
         </div>
     );
 };

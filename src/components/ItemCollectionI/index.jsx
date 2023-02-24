@@ -1,7 +1,7 @@
 import { ItemList } from '../ItemList';
 import { useState , useEffect } from 'react';
 import { useParams , Link } from "react-router-dom";
-import { collection , getDocs , deleteDoc , doc } from "firebase/firestore"; //métodos de firestore para crear los módulos de consulta y pedidos a firestore
+import { collection , getDocs } from "firebase/firestore"; //métodos de firestore para crear los módulos de consulta y pedidos a firestore
 import { dbComosano } from '../../firebaseConfig/firebase.js';
 
 export const ItemCollectionI = (props) => {
@@ -26,7 +26,6 @@ export const ItemCollectionI = (props) => {
                 setError(error);
             }
         };
-    
         fetchData();
     }, [categoryId]);
 

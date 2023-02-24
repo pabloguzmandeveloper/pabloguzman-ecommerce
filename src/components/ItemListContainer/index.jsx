@@ -1,8 +1,3 @@
-// import { useState , useEffect } from 'react';
-// import { useParams , Link } from "react-router-dom";
-// import { arrayplano } from '../../helpers/arrayplano';
-// import { collection , getDocs , deleteDoc , doc } from "firebase/firestore"; //métodos de firestore para crear los módulos de consulta y pedidos a firestore
-// import { dbComosano } from '../../firebaseConfig/firebase';
 // import Swal from 'sweetalert2';
 // import withReactContent from 'sweetalert2-react-content';
 import { ItemCollectionI } from "../ItemCollectionI";

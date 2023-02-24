@@ -1,4 +1,4 @@
-import { ItemCount } from "../ItemCount"
+import { ItemCount } from "../ItemCount/copy"
 
 // HIJO 1-4
 export const ItemDetail = ({product}) => {

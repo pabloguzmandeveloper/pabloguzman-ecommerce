@@ -31,9 +31,13 @@ export const ItemCount = (props)=>{
         }
     };
 
+    let subTotal = () => {
+
+    }
+
     let onAdd = ()=>{
         if (cart>0) {
-            addToCart({item:props,cuantity:count})
+            addToCart({item:props,quantity:count})
             setCart(count)            
             setCount(0)
             console.log(cart)

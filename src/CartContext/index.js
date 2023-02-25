@@ -7,8 +7,13 @@ export const UseContextAdd = () => useContext(CreateContextAdd);
 export const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([])
 
-    const addToCart = (objetoRecibido) => {
-        setCartList([...cartList,objetoRecibido])
+    const addToCart = (objectInput) => {
+        let waitingCart = [...cartList];
+    
+        (!(waitingCart.some((prod) => prod.item.id === objectInput.item.id)))?
+        setCartList([...cartList, objectInput]):
+        (waitingCart.find((prod) => prod.item.id === objectInput.item.id).quantity += objectInput.quantity);
+    // CUIDADO! ver si hay conflictos en no concatenar el setCartList(waitingCart)
         console.log(cartList)
     }
 

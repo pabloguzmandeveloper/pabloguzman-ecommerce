@@ -12,13 +12,15 @@ export const CartContextProvider = ({children}) => {
     
         (!(waitingCart.some((prod) => prod.item.id === objectInput.item.id)))?
         setCartList([...cartList, objectInput]):
-        (waitingCart.find((prod) => prod.item.id === objectInput.item.id).quantity += objectInput.quantity);
-    // CUIDADO! ver si hay conflictos en no concatenar el setCartList(waitingCart)
+        (waitingCart.find((prod) => prod.item.id === objectInput.item.id).quantity += objectInput.quantity)&&setCartList(waitingCart);
+    // Necesitabamos concatenar el setCartList(waitingCart) para que actualice el iconCart
         console.log(cartList)
     }
 
+    const iconCart = () => cartList.reduce((acc, cur) => acc + cur.quantity, 0);
+
     return (
-        < CreateContextAdd.Provider value={{addToCart}}>
+        < CreateContextAdd.Provider value={{addToCart,cartList,iconCart}}>
             {children}
         </CreateContextAdd.Provider>
     )

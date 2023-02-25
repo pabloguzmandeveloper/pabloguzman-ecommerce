@@ -9,41 +9,31 @@ export const ItemCount = (props)=>{
     let stock = props.stock;
     
     let [count, setCount] = useState(0);
-    let [cart,setCart] = useState(0)
 
     let down = ()=>{
         if (stock>0&count<=stock){
-            count>0?setCount(count-1) :count=0;
-            setCart(count);
+            count>0?setCount(count-1) :setCount(count)
         }else {
-            count=0
-            setCart(count)
+            setCount(0)
         }
     };
 
     let up = ()=>{
         if (stock>0&count<stock) {
             setCount(count+1)
-            setCart(count);
         }else {
-            count=stock
-            setCart(count)
+            setCount(stock)
         }
     };
 
-    let subTotal = () => {
-
-    }
 
     let onAdd = ()=>{
-        if (cart>0) {
-            addToCart({item:props,quantity:count})
-            setCart(count)            
+        if (count>0) {
+            addToCart({item:props,quantity:count})           
             setCount(0)
-            console.log(cart)
             console.log(count)
         }else {
-            setCart(0)            
+            setCount(0)            
         }
         console.log("se agregó al carrito "+ count)
     }

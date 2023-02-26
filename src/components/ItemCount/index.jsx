@@ -5,36 +5,37 @@ import { UseContextAdd } from '../../CartContext';
 
 export const ItemCount = (props)=>{
     const {addToCart} = UseContextAdd()
+    const {setStock} = UseContextAdd()
+    const {stock} = UseContextAdd()
 
-    let stock = props.stock;
+    setStock(props.stock);
+    console.log(stock)
     
     let [count, setCount] = useState(0);
-
+    
+    // let [ stockCheck , setStocktCheck ] = useState(stock)
+console.log(stock-count)
     let down = ()=>{
-        if (stock>0&count<=stock){
-            count>0?setCount(count-1) :setCount(count)
-        }else {
-            setCount(0)
+        if (stock>0&&count<=stock){
+            count>0?setCount(count-1) :setCount(0)
         }
     };
 
     let up = ()=>{
-        if (stock>0&count<stock) {
+        if (stock>0&&count<stock) {
             setCount(count+1)
-        }else {
-            setCount(stock)
         }
     };
 
 
     let onAdd = ()=>{
         if (count>0) {
-            addToCart({item:props,quantity:count})           
-            setCount(0)
+            addToCart({item:props,quantity:count})
+            setStock(stock-count)
             console.log(count)
-        }else {
-            setCount(0)            
+            console.log(stock)            
         }
+        setCount(0)
         console.log("se agregó al carrito "+ count)
     }
     // console.log("app se renderizará");

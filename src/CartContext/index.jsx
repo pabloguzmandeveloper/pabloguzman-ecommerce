@@ -1,12 +1,19 @@
 import { useContext , createContext , useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { updateDoc, doc } from "firebase/firestore";
+import { dbComosano } from '../firebaseConfig/firebase';
+// import { useParams } from 'react-router-dom';
 // 
 const CreateContextAdd = createContext();
-// 
+// Función que se usa para desestructurar en donde elijamos (en cualquier otro componente) requerir variables o funciones de la función cartCotextProvider
 export const UseContextAdd = () => useContext(CreateContextAdd);
 
 export const CartContextProvider = ({children}) => {
-    const [cartList, setCartList] = useState([])
-
+    const [cartList, setCartList] = useState([]);
+    const [stock, setStock] = useState(0);
+    const [ item, setItem ] = useState([]);
+    let {prodId} = useParams();
+    
     const addToCart = (objectInput) => {
         let waitingCart = [...cartList];
     
@@ -14,13 +21,22 @@ export const CartContextProvider = ({children}) => {
         setCartList([...cartList, objectInput]):
         (waitingCart.find((prod) => prod.item.id === objectInput.item.id).quantity += objectInput.quantity)&&setCartList(waitingCart);
     // Necesitabamos concatenar el setCartList(waitingCart) para que actualice el iconCart
+
+    const update = async ()=>{
+        const product = doc(dbComosano,"comosanoProductos",parseInt(prodId))
+        const data= {
+            stock:stock
+        }
+        await updateDoc (product,data)
+    }
+
         console.log(cartList)
     }
 
     const iconCart = () => cartList.reduce((acc, cur) => acc + cur.quantity, 0);
 
     return (
-        < CreateContextAdd.Provider value={{addToCart,cartList,iconCart}}>
+        < CreateContextAdd.Provider value={{addToCart,cartList,iconCart,stock,setStock,item,setItem}}>
             {children}
         </CreateContextAdd.Provider>
     )

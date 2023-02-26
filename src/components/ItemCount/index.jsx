@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { UseContextAdd } from '../../CartContext';
 
 // un punto importante que nos llevó todo el día fue que el dato propagado por context NO puede ESTAR AFUERA de la FUNCIÓN COMPONENTE sino no se rompe completamente la app. (addToCart en este caso)
@@ -7,38 +7,48 @@ export const ItemCount = (props)=>{
     const {addToCart} = UseContextAdd()
     const {setStock} = UseContextAdd()
     const {stock} = UseContextAdd()
+    const [initialStock, setInitialStock] = useState(0);
+    const [currentStock, setCurrentStock] = useState(0);
+    const [count, setCount] = useState(0);
 
-    setStock(props.stock);
+    let variableStock = props.stock
+
+    useEffect(() => {
+        setInitialStock(variableStock);
+        setCurrentStock(variableStock);
+    }, [variableStock]);
+    console.log(initialStock)
+    console.log(currentStock)
+
+    
     console.log(stock)
-    
-    let [count, setCount] = useState(0);
-    
-    // let [ stockCheck , setStocktCheck ] = useState(stock)
-console.log(stock-count)
+
     let down = ()=>{
-        if (stock>0&&count<=stock){
-            count>0?setCount(count-1) :setCount(0)
+        if (currentStock > 0 && count > 0) {
+            setCurrentStock(currentStock + 1);
+            setCount(count - 1);
         }
     };
 
     let up = ()=>{
-        if (stock>0&&count<stock) {
-            setCount(count+1)
+        if (currentStock > 0 && count < initialStock) {
+            setCurrentStock(currentStock - 1);
+            setCount(count + 1);
         }
     };
 
 
     let onAdd = ()=>{
-        if (count>0) {
+        if (count > 0) {
             addToCart({item:props,quantity:count})
-            setStock(stock-count)
-            console.log(count)
-            console.log(stock)            
+            setStock(currentStock);
+            setCurrentStock(currentStock);
+            setInitialStock(currentStock);
         }
         setCount(0)
         console.log("se agregó al carrito "+ count)
     }
-    // console.log("app se renderizará");
+
     return (
         <>
             <p>{count} x 1 {props.unit} = ${props.price*count}</p>

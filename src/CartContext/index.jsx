@@ -20,18 +20,21 @@ export const CartContextProvider = ({children}) => {
         (!(waitingCart.some((prod) => prod.item.id === objectInput.item.id)))?
         setCartList([...cartList, objectInput]):
         (waitingCart.find((prod) => prod.item.id === objectInput.item.id).quantity += objectInput.quantity)&&setCartList(waitingCart);
-    // Necesitabamos concatenar el setCartList(waitingCart) para que actualice el iconCart
 
-    const update = async ()=>{
-        const product = doc(dbComosano,"comosanoProductos",parseInt(prodId))
-        const data= {
-            stock:stock
+        const update = async ()=>{
+            const product = doc(dbComosano,"comosanoProductos",parseInt(prodId))
+            const data= {
+                stock:stock
+            }
+            await updateDoc (product,data)
         }
-        await updateDoc (product,data)
+
+            console.log(cartList)
+
+        update()
     }
 
-        console.log(cartList)
-    }
+    
 
     const iconCart = () => cartList.reduce((acc, cur) => acc + cur.quantity, 0);
 

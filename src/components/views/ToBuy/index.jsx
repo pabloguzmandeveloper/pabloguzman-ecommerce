@@ -1,6 +1,6 @@
 import { ItemListContainer } from '../../ItemListContainer';
 
-export const ToBuy = () => {
+export const cartorders = () => {
     return (
         <>
             <h1 className='navbar__menu--buy'>COMPONENTE COMPRA POR WHATSAPP</h1>

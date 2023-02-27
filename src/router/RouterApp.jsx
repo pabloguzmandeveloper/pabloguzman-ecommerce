@@ -2,11 +2,11 @@ import { Routes , Route } from "react-router-dom";
 import { AboutUs} from "../components/views/AboutUs";
 import { ProductsList } from "../components/views/ProductList";
 import { Stores } from "../components/views/Stores";
-import { ToBuy } from "../components/views/ToBuy";
 import { Error404 } from "../components/views/Error404";
 import { ItemListContainer } from "../components/ItemListContainer";
 import { ItemDetailContainer } from "../components/ItemDetailContainer";
-import { CartView } from "../components/Cart";
+import { CartCheck } from "../components/CartCheck";
+import { CartOrders } from "../components/CartOrders";
 
 export const RouterApp = () => {
     return (
@@ -17,9 +17,9 @@ export const RouterApp = () => {
                 <Route path="/category/:categoryId" element={<ItemListContainer />}/>
                 <Route path="/item/:productId"      element={<ItemDetailContainer />}/>
                 <Route path="/productslist"         element={<ProductsList/>}/>
-                <Route path="/cartview"             element={<CartView />}/>
+                <Route path="/cartcheck"             element={<CartCheck />}/>
                 <Route path="/stores"               element={<Stores />}/>
-                <Route path="/tobuy"                element={<ToBuy />}/>
+                <Route path="/cartorders"                element={<CartOrders />}/>
                 <Route path="*"                     element={<Error404 />}/>
             </Routes>
         </>

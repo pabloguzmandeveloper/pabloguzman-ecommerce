@@ -13,25 +13,27 @@ export const CartContextProvider = ({children}) => {
     const [stock, setStock] = useState(0);
     const [ item, setItem ] = useState([]);
     let {prodId} = useParams();
+
+    const update = async ()=>{
+        const product = doc(dbComosano,"comosanoProductos",parseInt(prodId))
+        const data= {
+            stock:stock
+        }
+        await updateDoc (product,data)
+    }
     
-    const addToCart = (objectInput) => {
+    const addToCart = async (objectInput) => {
         let waitingCart = [...cartList];
     
         (!(waitingCart.some((prod) => prod.item.id === objectInput.item.id)))?
         setCartList([...cartList, objectInput]):
         (waitingCart.find((prod) => prod.item.id === objectInput.item.id).quantity += objectInput.quantity)&&setCartList(waitingCart);
 
-        const update = async ()=>{
-            const product = doc(dbComosano,"comosanoProductos",parseInt(prodId))
-            const data= {
-                stock:stock
-            }
-            await updateDoc (product,data)
-        }
+        
 
-            console.log(cartList)
+            // console.log(cartList)
 
-        update()
+        await update()
     }
 
     const removeList = () => setCartList([]);

@@ -12,7 +12,7 @@ const NavigationBar = ({ visible }) => (
     <div id="navbar__menu" className={visible ? 'slideIn swing' : 'slideOut'} >
         <ul>
             <li>
-                <Link to='/tobuy'>Comprar por Whatsapp</Link>
+                <Link to='/cartorders'>Comprar por Whatsapp</Link>
             </li>
             <li>
                 <Link to='/productslist'>Lista de productos</Link>

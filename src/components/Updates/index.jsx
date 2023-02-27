@@ -5,7 +5,7 @@ import { dbComosano } from '../../firebaseConfig/firebase';
 const Create = () => {
     const [description,setDescription]=useState("");
     const [stock,setStock]=useState(0);
-    const navigate = usNavigate();
+    const navigate = useNavigate();
 
     const productsCollectionComosano = collection(dbComosano,"comosanoProductos");
     const store = async (e)=>{

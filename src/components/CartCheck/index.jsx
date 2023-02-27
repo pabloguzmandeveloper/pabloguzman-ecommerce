@@ -1,8 +1,10 @@
+import { Link , useParams } from 'react-router-dom';
 import { CartContextApp } from '../../CartContext';
 
-export const CartView = () => {
+export const CartCheck = ({children}) => {
     const {totalPrice,deletItem,removeList,cartList} = CartContextApp();
-
+    const {idRoute} = useParams();
+console.log(idRoute)
 
     return (
         <ul>
@@ -18,12 +20,27 @@ export const CartView = () => {
                     </>
                 )
             })}
-            <button onClick={removeList}>Borrar todos los productos</button>
-            <p>TOTAL: ${totalPrice}</p>
-            <button onClick={removeList}>ENVIAR PEDIDO POR WHATSAPP</button>
+
+            {cartList.length > 0?
+            <>
+                <button onClick={removeList}>Borrar todos los productos</button>
+                <p>TOTAL: ${totalPrice}</p>
+                {console.log(idRoute)}
+                {idRoute==="cartcheck"?
+                    <Link to={"/cartorders"}>ENVIAR PEDIDO POR WHATSAPP</Link>:
+                    ""
+                }                
+            {/*===========*/}
+                {children}
+            {/*===========*/}
+            </>:
+            <Link to="/">El carrito está vacío-Ir a listado de productos</Link>
+            }
+            
         </ul>
     )
 }
+
 
 
 

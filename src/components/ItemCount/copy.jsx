@@ -1,15 +1,15 @@
-import { UseContextAdd } from "../../CartContext";
+import { CartContextApp } from "../../CartContext";
 
 
 
 export const ItemCount = (props)=>{
     // let stock = props.stock;
 
-    const down = UseContextAdd();
-    const up = UseContextAdd();
-    const onAdd = UseContextAdd();
-    const count = UseContextAdd();
-    // const [cart,setCart] = UseContextAdd();
+    const down = CartContextApp();
+    const up = CartContextApp();
+    const onAdd = CartContextApp();
+    const count = CartContextApp();
+    // const [cart,setCart] = CartContextApp();
 
     
     // let [count,setCount] = useState(0);

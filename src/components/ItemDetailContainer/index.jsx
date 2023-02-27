@@ -5,14 +5,14 @@ import { useParams , Link } from 'react-router-dom';//cuidado que retorna numero
 import { ItemDetail } from '../ItemDetail';
 import { collection , getDocs } from "firebase/firestore"; //métodos de firestore para crear los módulos de consulta y pedidos a firestore
 import { dbComosano } from '../../firebaseConfig/firebase.js';
-import { UseContextAdd } from '../../CartContext/index.jsx';
+import { CartContextApp } from '../../CartContext/index.jsx';
 
 export const ItemDetailContainer = () => {
     const {productId} = useParams();
     // 1 configurarmos hooks
     const [ loading , setLoading] = useState([false]);
     const [ error , setError ] = useState([null]);
-    const { item, setItem } = UseContextAdd();
+    const { item, setItem } = CartContextApp();
 // console.log(item)
 
 
@@ -46,7 +46,7 @@ export const ItemDetailContainer = () => {
         {item.map((producto)=>{
             return (
                 <div key={producto.id}>
-                    <Link to={`/category/${producto.categ}`} >
+                    <Link to={'/'} >
                         <h3>{producto.title +" - seguir comprando"}</h3>
                     </Link>
             

@@ -1,3 +1,33 @@
+import { CartContextApp } from '../../CartContext';
+
+export const CartView = () => {
+    const {totalPrice,deletItem,removeList,cartList} = CartContextApp();
+
+
+    return (
+        <ul>
+            {cartList.map((prodItem)=>{
+                return(
+                    <>
+                    {console.log(prodItem)}
+                        <li key={prodItem.item.id}>
+                            <p>Nombre: {prodItem.item.name}</p>
+                            <p>Subtotal: {prodItem.item.price} x {prodItem.quantity}{prodItem.item.unit} = ${(prodItem.item.price)*(prodItem.quantity)}</p>                            
+                            <button onClick={()=>deletItem(prodItem.item.id)}>Eliminar</button>
+                        </li>                        
+                    </>
+                )
+            })}
+            <button onClick={removeList}>Borrar todos los productos</button>
+            <p>TOTAL: ${totalPrice}</p>
+            <button onClick={removeList}>ENVIAR PEDIDO POR WHATSAPP</button>
+        </ul>
+    )
+}
+
+
+
+
 
 
 

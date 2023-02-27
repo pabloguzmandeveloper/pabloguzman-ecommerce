@@ -1,12 +1,13 @@
 import { useState , useEffect } from "react";
-import { UseContextAdd } from '../../CartContext';
+import { CartContextApp } from '../../CartContext';
 
 // un punto importante que nos llevó todo el día fue que el dato propagado por context NO puede ESTAR AFUERA de la FUNCIÓN COMPONENTE sino no se rompe completamente la app. (addToCart en este caso)
 
 export const ItemCount = (props)=>{
-    const {addToCart} = UseContextAdd()
-    const {setStock} = UseContextAdd()
-    const {stock} = UseContextAdd()
+    const {addToCart} = CartContextApp()
+    const {setStock} = CartContextApp()
+    const {stock} = CartContextApp()
+
     const [initialStock, setInitialStock] = useState(0);
     const [currentStock, setCurrentStock] = useState(0);
     const [count, setCount] = useState(0);
@@ -17,10 +18,9 @@ export const ItemCount = (props)=>{
         setInitialStock(variableStock);
         setCurrentStock(variableStock);
     }, [variableStock]);
+
     console.log(initialStock)
     console.log(currentStock)
-
-    
     console.log(stock)
 
     let down = ()=>{
@@ -36,7 +36,6 @@ export const ItemCount = (props)=>{
             setCount(count + 1);
         }
     };
-
 
     let onAdd = ()=>{
         if (count > 0) {

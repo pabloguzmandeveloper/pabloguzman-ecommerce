@@ -6,7 +6,7 @@ import { dbComosano } from '../firebaseConfig/firebase';
 // 
 const CreateContextAdd = createContext();
 // Función que se usa para desestructurar en donde elijamos (en cualquier otro componente) requerir variables o funciones de la función cartCotextProvider
-export const UseContextAdd = () => useContext(CreateContextAdd);
+export const CartContextApp = () => useContext(CreateContextAdd);
 
 export const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([]);
@@ -34,12 +34,23 @@ export const CartContextProvider = ({children}) => {
         update()
     }
 
-    
+    const removeList = () => setCartList([]);
+
+    const deletItem = (idProd) => {
+        setCartList(cartList.filter((waitingItem) => waitingItem.item.id !== idProd));
+    };
+
+    const totalPrice = cartList.reduce((total, item) => {
+        const { price } = item.item;
+        const { quantity } = item;
+        const itemTotalPrice = price * quantity;
+        return total + itemTotalPrice;
+    }, 0);
 
     const iconCart = () => cartList.reduce((acc, cur) => acc + cur.quantity, 0);
 
     return (
-        < CreateContextAdd.Provider value={{addToCart,cartList,iconCart,stock,setStock,item,setItem}}>
+        < CreateContextAdd.Provider value={{addToCart,cartList,iconCart,stock,setStock,item,setItem,removeList,deletItem,totalPrice}}>
             {children}
         </CreateContextAdd.Provider>
     )

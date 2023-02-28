@@ -3,8 +3,8 @@ import { CartContextApp } from '../../CartContext';
 
 export const CartCheck = ({children}) => {
     const {totalPrice,deletItem,removeList,cartList} = CartContextApp();
-    const {idRoute} = useParams();
-console.log(idRoute)
+    const {check} = useParams();
+console.log(check)
 
     return (
         <ul>
@@ -20,23 +20,21 @@ console.log(idRoute)
                     </>
                 )
             })}
-
+{console.log(check)}
             {cartList.length > 0?
             <>
                 <button onClick={removeList}>Borrar todos los productos</button>
                 <p>TOTAL: ${totalPrice}</p>
-                {console.log(idRoute)}
-                {idRoute==="cartcheck"?
+                {check==="check"?
                     <Link to={"/cartorders"}>ENVIAR PEDIDO POR WHATSAPP</Link>:
-                    ""
-                }                
+                    "" 
+                }
             {/*===========*/}
                 {children}
             {/*===========*/}
             </>:
             <Link to="/">El carrito está vacío-Ir a listado de productos</Link>
-            }
-            
+            }            
         </ul>
     )
 }

@@ -2,8 +2,7 @@ import { useContext , createContext , useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { updateDoc, doc } from "firebase/firestore";
 import { dbComosano } from '../firebaseConfig/firebase';
-// import { useParams } from 'react-router-dom';
-// 
+
 const CreateContextAdd = createContext();
 // Función que se usa para desestructurar en donde elijamos (en cualquier otro componente) requerir variables o funciones de la función cartCotextProvider
 export const CartContextApp = () => useContext(CreateContextAdd);
@@ -12,10 +11,10 @@ export const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([]);
     const [stock, setStock] = useState(0);
     const [ item, setItem ] = useState([]);
-    let {prodId} = useParams();
+    const {check} = useParams();
 
     const update = async ()=>{
-        const product = doc(dbComosano,"comosanoProductos",parseInt(prodId))
+        const product = doc(dbComosano,"comosanoProductos",parseInt(check))
         const data= {
             stock:stock
         }

@@ -1,11 +1,15 @@
-import { useParams , Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState , useEffect } from "react";
 import { addDoc , collection , getFirestore , doc , updateDoc } from "firebase/firestore";
 
+
+// usar useEffect para hacer efectivos los cambios y actualizaciones en la base de datos, los corchetes vacíos se activa cuando se refresca la página []
+
+
 export const ItemCollectionII = ({cartList }) => {
     // ruta parametrizada ?
-    const {updateId} = useParams();
-    console.log(updateId)
+    // const {order} = useParams();
+    // console.log(order)
     // 1 Creamos estados en ordenes
     // const [ orderId , setOrderId ] = useState;
     const [nombre, setNombre] = useState("");
@@ -41,7 +45,7 @@ export const ItemCollectionII = ({cartList }) => {
     // };
 // useEffect(()=>{
 //     purchaseOrder()
-// },[updateId])
+// },[order])
 
     return (
       <>

@@ -29,8 +29,6 @@ export const ItemCollectionI = (props) => {
         fetchData();
     }, [categoryId]);
 
-    // los detalles se rompen porque la ruta de renderizado está vinculada a ItemListContainer? Ahora con esta solución no, desconocemos, será porque solucionamos la falla en la asincronía
-
     return(
         <div className="item-list-container">
             <h2 style={props.style}>{props.greeting}</h2>

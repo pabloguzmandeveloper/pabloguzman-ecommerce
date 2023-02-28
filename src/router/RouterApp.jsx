@@ -21,7 +21,7 @@ export const RouterApp = () => {
                 <Route path="/productslist"           element={<ProductsList />} />
                 <Route path="/cartcheck/:check"       element={<CartCheck />} />
                 <Route path="/stores"                 element={<Stores />} />
-                <Route path="/cartorders"             element={<CartOrders />} />
+                <Route path="/cartorders/:order"             element={<CartOrders />} />
                 <Route path="*"                       element={<Error404 />} />
             </Routes>
         </>

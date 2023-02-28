@@ -4,7 +4,6 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import './CartWidget.css';
 import { CartContextApp } from '../../CartContext'; //esta función hos ayuda a traer cualquier parte o variable de la función Provider del context 
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
 
 const CartWidget = () => {
     const { cartList , iconCart } = CartContextApp();//podemos traer de CartContext todo lo que necesitemos de él para hacer las referencias, 

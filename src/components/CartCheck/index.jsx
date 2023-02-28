@@ -1,23 +1,26 @@
+import { useState } from 'react';
 import { Link , useParams } from 'react-router-dom';
 import { CartContextApp } from '../../CartContext';
 
 export const CartCheck = ({children}) => {
     const {totalPrice,deletItem,removeList,cartList} = CartContextApp();
     const {check} = useParams();
-console.log(check)
+console.log(check);
+
+
 
     return (
         <ul>
             {cartList.map((prodItem)=>{
                 return(
-                    <>
+                    <div key={prodItem.item.id}>
                     {console.log(prodItem)}
-                        <li key={prodItem.item.id}>
+                        <li >
                             <p>Nombre: {prodItem.item.name}</p>
                             <p>Subtotal: {prodItem.item.price} x {prodItem.quantity}{prodItem.item.unit} = ${(prodItem.item.price)*(prodItem.quantity)}</p>                            
                             <button onClick={()=>deletItem(prodItem.item.id)}>Eliminar</button>
                         </li>                        
-                    </>
+                    </div>
                 )
             })}
 {console.log(check)}
@@ -26,7 +29,7 @@ console.log(check)
                 <button onClick={removeList}>Borrar todos los productos</button>
                 <p>TOTAL: ${totalPrice}</p>
                 {check==="check"?
-                    <Link to={"/cartorders"}>ENVIAR PEDIDO POR WHATSAPP</Link>:
+                    <Link to={`/cartorders/order`}>ENVIAR PEDIDO POR WHATSAPP</Link>:
                     "" 
                 }
             {/*===========*/}

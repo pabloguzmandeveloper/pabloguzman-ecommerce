@@ -1,5 +1,4 @@
 import { useContext , createContext , useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { updateDoc, doc } from "firebase/firestore";
 import { dbComosano } from '../firebaseConfig/firebase';
 
@@ -11,28 +10,13 @@ export const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([]);
     const [stock, setStock] = useState(0);
     const [ item, setItem ] = useState([]);
-    const {check} = useParams();
-
-    const update = async ()=>{
-        const product = doc(dbComosano,"comosanoProductos",parseInt(check))
-        const data= {
-            stock:stock
-        }
-        await updateDoc (product,data)
-    }
     
-    const addToCart = async (objectInput) => {
+    const addToCart = (objectInput) => {
         let waitingCart = [...cartList];
     
         (!(waitingCart.some((prod) => prod.item.id === objectInput.item.id)))?
         setCartList([...cartList, objectInput]):
         (waitingCart.find((prod) => prod.item.id === objectInput.item.id).quantity += objectInput.quantity)&&setCartList(waitingCart);
-
-        
-
-            // console.log(cartList)
-
-        await update()
     }
 
     const removeList = () => setCartList([]);
@@ -51,7 +35,7 @@ export const CartContextProvider = ({children}) => {
     const iconCart = () => cartList.reduce((acc, cur) => acc + cur.quantity, 0);
 
     return (
-        < CreateContextAdd.Provider value={{addToCart,cartList,iconCart,stock,setStock,item,setItem,removeList,deletItem,totalPrice}}>
+        < CreateContextAdd.Provider value={{addToCart,cartList,setCartList,iconCart,stock,setStock,item,setItem,removeList,deletItem,totalPrice}}>
             {children}
         </CreateContextAdd.Provider>
     )

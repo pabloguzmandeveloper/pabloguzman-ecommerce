@@ -1,51 +1,86 @@
-import { Link } from "react-router-dom";
+import { Link , useParams , useNavigate } from "react-router-dom";
 import { useState , useEffect } from "react";
-import { addDoc , collection , getFirestore , doc , updateDoc } from "firebase/firestore";
-
-
+import { CartContextApp } from '../../CartContext';
+import {collection,getDocs,getFirestore,doc,updateDoc,addDoc} from "firebase/firestore";
+import { dbComosano } from '../../firebaseConfig/firebase.js';
 // usar useEffect para hacer efectivos los cambios y actualizaciones en la base de datos, los corchetes vacíos se activa cuando se refresca la página []
 
 
-export const ItemCollectionII = ({cartList }) => {
-    // ruta parametrizada ?
-    // const {order} = useParams();
-    // console.log(order)
+export const ItemCollectionII = () => {
+    const navigate = useNavigate();
+    const {totalPrice,deletItem,removeList,cartList,setCartList} = CartContextApp();
+console.log(cartList)
+    const {order} = useParams();
+    console.log(order)
     // 1 Creamos estados en ordenes
-    // const [ orderId , setOrderId ] = useState;
-    const [nombre, setNombre] = useState("");
-    const [telefono, setTelefono] = useState("");
-    const [email, setEmail] = useState("");
+    const [ loading , setLoading] = useState([false]);
+    const [ error , setError ] = useState([null]);
+    const [ ordersDb , setOrdersDb ] = useState([]);
+    const [ orderNum , setOrderNum ] = useState(99);    
+    const [ nombre , setNombre] = useState("");
+    const [ telefono , setTelefono] = useState("");
+    const [ email , setEmail] = useState("");
+    const [ purchase , setPurchase ] = useState();
+    const [formIncomplete, setFormIncomplete] = useState(false);
+
+console.log(nombre, telefono, email, orderNum, ordersDb,)
+    const dbOrders = collection(dbComosano,"orders")
+
+    const orderUser = {
+        id:orderNum,
+        buyer:{name:nombre, phone:telefono, email:email},
+        items:cartList,
+        total:totalPrice
+    };    
+
+    useEffect (() => {
+      const fetchOrders = async ()=> {
+          try {
+              setLoading(true);
+              const data = await getDocs(dbOrders);
+              const orders1 = data.docs.map((doc) =>({...doc.data(),id:doc.id}));
+              setOrdersDb(orders1);
+              let lastorder=orders1.findLast(el=>el.id)
+              console.log(lastorder);
+              let lastId = parseInt(lastorder.id)
+              console.log(lastId+1);
+              setOrderNum(lastId+1);
+              setLoading(false);
+          } catch (error) {
+              setLoading(false);
+              setError(error);
+          }
+      };
+      fetchOrders();
+      
+  
+        purchaseOrder();
+
+    },[purchase]);
 
     const handleSubmit = (event) => {
       event.preventDefault();
-      console.log(`Nombre: ${nombre}, Teléfono: ${telefono}, Email: ${email}`);
+      if (nombre === "" || telefono === "" || email === "") {
+        setFormIncomplete(true);
+      } else {
+        setFormIncomplete(false);
+        console.log(orderUser);
+        setPurchase(orderUser);
+        
+        navigate('/')
+      }
+
     };
 
-// 2 Creamos función para generar ordenes de compras
-    // const purchaseOrder = ({dataOrder}) => {
-    //     console.log("función purchaseOrden ejecutada")
-    //     const orderUser = {
-    //         id:"elegir",
-    //         buyer:{name:"Pepe", phone:"111", email:"a@a.com"},
-    //         items:[{name:"Bicicleta", price:1000}],
-    //         total:1000
-    //     };
-    //     const db = getFirestore();
-    //     const ordersCollection = collection(db,"orders");
-    //     addDoc(ordersCollection,orderUser).then(({id})=>setOrderId(id))
-    // };
+// 2 Creamos función para guardar ordenes de compras en la base de datos
+    const purchaseOrder = async () => {
+        console.log("función purchaseOrden ejecutada");
+        const ordersCollection = collection(dbComosano,"orders");
+        await addDoc(ordersCollection,purchase)
+    };
+                    //.then(({id})=>setOrderId(id))
 
 // LAS DOS FUNCIONES LA HEMOS PROBADO DENTRO DEL useEffect DEL COMPONENTE ItemCollectionI Y FUNCIONA, ACÁ NO FUNCIONA APARENTEMENTE PORQUE NO ESTA LIGADO A UNA RUTA O COMPONENTES CON RUTAS, SINO EXISTE EN LAS RUTAS ESTE ARCHIVO CON SUS FUNCIONES NI SE EJECUTAN EN LA COMPILACIÓN.
-
-// 3 Creamos función para actualizar orden
-    // const updatePurchaseOrder = ({dataOrder}) => {
-    //     const db = getFirestore();
-    //     const orderDoc = doc(db,"orders",orderId);
-    //     updateDoc(orderDoc,{total:4000});
-    // };
-// useEffect(()=>{
-//     purchaseOrder()
-// },[order])
 
     return (
       <>
@@ -79,7 +114,7 @@ export const ItemCollectionII = ({cartList }) => {
           </label>
           <br />
         </form>
-        <button>Finalizar pedido</button>
+        <button onClick={handleSubmit}>Finalizar pedido</button>
         <Link to="/">Cancelar y volver a la lista de productos</Link>
       </>
     )

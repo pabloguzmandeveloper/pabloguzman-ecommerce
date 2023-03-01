@@ -3,8 +3,10 @@ import { useState , useEffect } from "react";
 import { CartContextApp } from '../../CartContext';
 import {collection,getDocs,doc,updateDoc,addDoc} from "firebase/firestore";
 import { dbComosano } from '../../firebaseConfig/firebase.js';
-// usar useEffect para hacer efectivos los cambios y actualizaciones en la base de datos, los corchetes vacíos se activa cuando se refresca la página []
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
+const MySwal = withReactContent(Swal);
 
 export const ItemCollectionII = () => {
     const navigate = useNavigate();
@@ -15,58 +17,70 @@ console.log(cartList)
     // 1 Creamos estados en ordenes
     const [ loading , setLoading] = useState([false]);
     const [ error , setError ] = useState([null]);
-    const [ ordersDb , setOrdersDb ] = useState([]);
-    const [ orderNum , setOrderNum ] = useState(99);    
+    const [ orderId , setOrderId ] = useState(99);
     const [ nombre , setNombre] = useState("");
     const [ telefono , setTelefono] = useState("");
     const [ email , setEmail] = useState("");
-    const [ purchase , setPurchase ] = useState();
+    const [ purchase , setPurchase ] = useState([]);
     const [formIncomplete, setFormIncomplete] = useState(false);
 
-console.log(nombre, telefono, email, orderNum, ordersDb,)
+console.log(nombre, telefono, email, orderId)
     const dbOrders = collection(dbComosano,"orders")
 
     const orderUser = {
-        id:orderNum.toString(),
         buyer:{name:nombre, phone:telefono, email:email},
         items:cartList,
         total:totalPrice
     };    
 
     useEffect (() => {
-      const fetchOrders = async ()=> {
-          try {
-              setLoading(true);
-              const data = await getDocs(dbOrders);
-              const orders1 = data.docs.map((doc) =>({...doc.data(),id:doc.id}));
-              setOrdersDb(orders1);
-              let lastorder=orders1.findLast(el=>el.id)
-              console.log(lastorder);
-              console.log(lastorder.id)
-              let lastId = parseInt(lastorder.id)
-              console.log(lastId+1);
-              setOrderNum(lastId+1);
-              setLoading(false);
-          } catch (error) {
-              setLoading(false);
-              setError(error);
-          }
-      };
-      fetchOrders();
       purchaseOrder();
 
+      const fetchOrders = async ()=> {
+        try {
+            setLoading(true);
+            const data = await getDocs(dbOrders);
+            const orders1 = data.docs.map((doc) =>({...doc.data(),id:doc.id}));
+            let lastorder=orders1.findLast(el=>el.id)
+            console.log(lastorder);
+            let lastId = lastorder.id;
+            console.log(lastId);
+            setOrderId(lastId);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            setError(error);
+        }
+    };
+    fetchOrders();
+
+    Swal.fire({
+      title: 'COMPRA EXITOSA!',
+      text: "GRACIAS POR SU CONFIANZA!",
+      icon: 'success',
+      confirmButtonColor: '#3085d6',
+      
+      confirmButtonText: 'Continuar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          ' Numero de compra',
+          'A la brevedad procesaremos su compra',
+          'success',
+          navigate('/')
+        )
+      }
+    })
     },[purchase]);
 
     const handleSubmit = (event) => {
       event.preventDefault();
-      if (nombre === "" || telefono === "" || email === "") {
-        setFormIncomplete(true);
-      } else {
-        setFormIncomplete(false);
+      
         console.log(orderUser);
         setPurchase(orderUser);
-        // navigate('/')
-      }
+        
+        // 
+      
 
     };
 
@@ -83,7 +97,7 @@ console.log(nombre, telefono, email, orderNum, ordersDb,)
     return (
       <>
         <p>Para finalizar el pedido por favor complete los siguientes datos de contacto</p>
-        <form onSubmit={handleSubmit}>
+        <form >
           <label>
             Nombre:
             <input

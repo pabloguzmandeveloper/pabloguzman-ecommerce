@@ -1,7 +1,7 @@
 import { Link , useParams , useNavigate } from "react-router-dom";
 import { useState , useEffect } from "react";
 import { CartContextApp } from '../../CartContext';
-import {collection,getDocs,getFirestore,doc,updateDoc,addDoc} from "firebase/firestore";
+import {collection,getDocs,doc,updateDoc,addDoc} from "firebase/firestore";
 import { dbComosano } from '../../firebaseConfig/firebase.js';
 // usar useEffect para hacer efectivos los cambios y actualizaciones en la base de datos, los corchetes vacíos se activa cuando se refresca la página []
 
@@ -27,7 +27,7 @@ console.log(nombre, telefono, email, orderNum, ordersDb,)
     const dbOrders = collection(dbComosano,"orders")
 
     const orderUser = {
-        id:orderNum,
+        id:orderNum.toString(),
         buyer:{name:nombre, phone:telefono, email:email},
         items:cartList,
         total:totalPrice
@@ -42,6 +42,7 @@ console.log(nombre, telefono, email, orderNum, ordersDb,)
               setOrdersDb(orders1);
               let lastorder=orders1.findLast(el=>el.id)
               console.log(lastorder);
+              console.log(lastorder.id)
               let lastId = parseInt(lastorder.id)
               console.log(lastId+1);
               setOrderNum(lastId+1);
@@ -52,9 +53,7 @@ console.log(nombre, telefono, email, orderNum, ordersDb,)
           }
       };
       fetchOrders();
-      
-  
-        purchaseOrder();
+      purchaseOrder();
 
     },[purchase]);
 
@@ -66,8 +65,7 @@ console.log(nombre, telefono, email, orderNum, ordersDb,)
         setFormIncomplete(false);
         console.log(orderUser);
         setPurchase(orderUser);
-        
-        navigate('/')
+        // navigate('/')
       }
 
     };
@@ -75,8 +73,8 @@ console.log(nombre, telefono, email, orderNum, ordersDb,)
 // 2 Creamos función para guardar ordenes de compras en la base de datos
     const purchaseOrder = async () => {
         console.log("función purchaseOrden ejecutada");
-        const ordersCollection = collection(dbComosano,"orders");
-        await addDoc(ordersCollection,purchase)
+        // const ordersCollection = collection(dbComosano,"orders");
+        await addDoc(dbOrders,purchase)
     };
                     //.then(({id})=>setOrderId(id))
 

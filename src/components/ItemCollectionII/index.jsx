@@ -31,55 +31,58 @@ console.log(nombre, telefono, email, orderId)
         buyer:{name:nombre, phone:telefono, email:email},
         items:cartList,
         total:totalPrice
-    };    
-
-    useEffect (() => {
-      purchaseOrder();
-
-      const fetchOrders = async ()=> {
-        try {
-            setLoading(true);
-            const data = await getDocs(dbOrders);
-            const orders1 = data.docs.map((doc) =>({...doc.data(),id:doc.id}));
-            let lastorder=orders1.findLast(el=>el.id)
-            console.log(lastorder);
-            let lastId = lastorder.id;
-            console.log(lastId);
-            setOrderId(lastId);
-            setLoading(false);
-        } catch (error) {
-            setLoading(false);
-            setError(error);
-        }
     };
-    fetchOrders();
-
-    Swal.fire({
-      title: 'COMPRA EXITOSA!',
-      text: "GRACIAS POR SU CONFIANZA!",
-      icon: 'success',
-      confirmButtonColor: '#3085d6',
-      
-      confirmButtonText: 'Continuar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          ' Numero de compra',
-          'A la brevedad procesaremos su compra',
-          'success',
-          navigate('/')
-        )
+    
+    const fetchOrders = async ()=> {
+      try {
+          setLoading(true);
+          const data = await getDocs(dbOrders);
+          const orders1 = data.docs.map((doc) =>({...doc.data(),id:doc.id}));
+          let lastorder=orders1.findLast(el=>el.id)
+          console.log(lastorder);
+          let lastId = lastorder.id;
+          console.log(lastId);
+          setOrderId(lastId);
+          setLoading(false);
+      } catch (error) {
+          setLoading(false);
+          setError(error);
       }
-    })
-    },[purchase]);
+    };
+
+
+      
+
+      
+    
+
+    // Swal.fire({
+    //   title: 'COMPRA EXITOSA!',
+    //   text: "GRACIAS POR SU CONFIANZA!",
+    //   icon: 'success',
+    //   confirmButtonColor: '#3085d6',
+      
+    //   confirmButtonText: 'Continuar'
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     Swal.fire(
+    //       ' Numero de compra',
+    //       'A la brevedad procesaremos su compra',
+    //       'success',
+    //       navigate('/')
+    //     )
+    //   }
+    // })
+   
 
     const handleSubmit = (event) => {
       event.preventDefault();
       
         console.log(orderUser);
-        setPurchase(orderUser);
+        purchaseOrder();
+        fetchOrders();
         
-        // 
+        
       
 
     };

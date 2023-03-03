@@ -3,12 +3,15 @@ import { useState , useEffect } from 'react';
 import { useParams , Link } from "react-router-dom";
 import { collection , getDocs } from "firebase/firestore"; //métodos de firestore para crear los módulos de consulta y pedidos a firestore
 import { dbComosano } from '../../firebaseConfig/firebase.js';
+import { CartContextApp } from '../../CartContext';
 
 export const ItemCollectionI = (props) => {
+    const {dataCollection,setDataCollection} = CartContextApp();
     const {categoryId} = useParams();
     // 1 configurarmos hooks
     const [ loading , setLoading] = useState([false]);
     const [ error , setError ] = useState([null]);
+    
     const [ categories, setCategories ] = useState([]);
     // 2 referenciamos la db de firestore
     const dbComosanoFirestore = collection(dbComosano,"comosanoProductos")
@@ -18,6 +21,7 @@ export const ItemCollectionI = (props) => {
             try {
                 setLoading(true);
                 const data = await getDocs(dbComosanoFirestore);
+                setDataCollection(data);
                 const categories1 = data.docs.map((doc) =>({...doc.data(),id:doc.id}));
                 setCategories(categories1.filter(item => !categoryId || item.categ === categoryId));
                 setLoading(false);

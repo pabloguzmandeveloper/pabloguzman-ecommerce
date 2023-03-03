@@ -115,4 +115,4 @@ export const ItemCollectionI = (props) => {
             
         </div>
     )
-}
+};

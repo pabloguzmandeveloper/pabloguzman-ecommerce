@@ -1,9 +1,11 @@
-import { Link , useParams , useNavigate } from "react-router-dom";
+import { useParams , useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { CartContextApp } from '../../CartContext';
 import {collection,getDocs,doc,updateDoc,addDoc} from "firebase/firestore";
 import { dbComosano } from '../../firebaseConfig/firebase.js';
 import Swal from 'sweetalert2';
+import {Form, Button , Container} from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
 
 export const ItemCollectionII = () => {
     const navigate = useNavigate();
@@ -21,13 +23,13 @@ console.log(cartList)
 
 console.log(nombre, telefono, email)
     const dbOrders = collection(dbComosano,"orders")
-// creamos objeto para capturar los inputs
+// creamos objeto para capturar los Form.Controls
     const orderUser = {
         buyer:{name:nombre, phone:telefono, email:email},
         items:cartList,
         total:totalPrice
     };
-// agregamos a firestore el objeto de los inputs
+// agregamos a firestore el objeto de los Form.Controls
     const purchaseOrder = async () => {
         console.log("función purchaseOrden ejecutada");
         await addDoc(dbOrders,orderUser)
@@ -75,41 +77,52 @@ console.log(nombre, telefono, email)
 
     };
 
-
     return (
-      <>
-        <p>Para finalizar el pedido por favor complete los siguientes datos de contacto</p>
-        <form >
-          <label>
-            Nombre:
-            <input
-              type="text"
-              value={nombre}
-              onChange={(event) => setNombre(event.target.value)}
-            />
-          </label>
-          <br />
-          <label>
-            Teléfono:
-            <input
-              type="tel"
-              value={telefono}
-              onChange={(event) => setTelefono(event.target.value)}
-            />
-          </label>
-          <br />
-          <label>
-            Correo electrónico:
-            <input
-              type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </label>
-          <br />
-        </form>
-        <button onClick={handleSubmit}>Finalizar pedido</button>
-        <Link to="/">Cancelar y volver a la lista de productos</Link>
-      </>
+      <Card
+        bg={'success'}
+        key={'success'}
+        text={'success' === 'light' ? 'dark' : 'white'}
+        style={{ width: '18rem' }}
+        className="mb-2"
+      >
+        <Card.Header>Por favor complete los siguientes datos de contacto</Card.Header>
+        <Card.Body>
+          <Card.Title>Datos para registrar su pedido</Card.Title>
+          <Container>
+            <Form >
+              <Form.Group>
+                Nombre:
+                <Form.Control
+                  type="text"
+                  value={nombre}
+                  onChange={(event) => setNombre(event.target.value)}
+                />
+              </Form.Group>
+              <br />
+              <Form.Group>
+                Teléfono:
+                <Form.Control
+                  type="tel"
+                  value={telefono}
+                  onChange={(event) => setTelefono(event.target.value)}
+                />
+              </Form.Group>
+              <br />
+              <Form.Group>
+                Correo electrónico:
+                <Form.Control
+                  type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+              </Form.Group>
+              <br />
+            </Form>
+            <Button onClick={handleSubmit}>Finalizar pedido</Button>
+            <br></br>
+            <Button onClick={()=>navigate('/')}>Cancelar y volver a la lista de productos</Button>
+          </Container>
+        </Card.Body>
+      </Card>
     )
 };

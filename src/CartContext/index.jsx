@@ -1,6 +1,4 @@
 import { useContext , createContext , useState } from 'react';
-import { updateDoc, doc } from "firebase/firestore";
-import { dbComosano } from '../firebaseConfig/firebase';
 
 const CreateContextAdd = createContext();
 // Función que se usa para desestructurar en donde elijamos (en cualquier otro componente) requerir variables o funciones de la función cartCotextProvider

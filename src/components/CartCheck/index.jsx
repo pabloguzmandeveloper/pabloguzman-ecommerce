@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link , useParams } from 'react-router-dom';
 import { CartContextApp } from '../../CartContext';
 
@@ -6,8 +5,6 @@ export const CartCheck = ({children}) => {
     const {totalPrice,deletItem,removeList,cartList} = CartContextApp();
     const {check} = useParams();
 console.log(check);
-
-
 
     return (
         <ul>
@@ -36,11 +33,11 @@ console.log(check);
                 {children}
             {/*===========*/}
             </>:
-            <Link to="/">El carrito está vacío-Ir a listado de productos</Link>
+            <Link to="/">Carrito de compras está vacío!! - Ir a listado de productos</Link>
             }            
         </ul>
     )
-}
+};
 
 
 

@@ -5,14 +5,13 @@ import { useParams , Link } from 'react-router-dom';//cuidado que retorna numero
 import { ItemDetail } from '../ItemDetail';
 import { collection , getDocs } from "firebase/firestore"; //métodos de firestore para crear los módulos de consulta y pedidos a firestore
 import { dbComosano } from '../../firebaseConfig/firebase.js';
-import { CartContextApp } from '../../CartContext/index.jsx';
 
 export const ItemDetailContainer = () => {
     const {productId} = useParams();
     // 1 configurarmos hooks
     const [ loading , setLoading] = useState([false]);
     const [ error , setError ] = useState([null]);
-    const { item, setItem } = CartContextApp();
+    const [ item, setItem ] = useState([]);
 // console.log(item)
 
 
@@ -47,7 +46,7 @@ export const ItemDetailContainer = () => {
             return (
                 <div key={producto.id}>
                     <Link to={'/'} >
-                        <h3>{producto.title +" - seguir comprando"}</h3>
+                        <h3>{"Volver a la lista - seguir comprando!!"}</h3>
                     </Link>
             
                     <img className='img-detail' src={imagesMap[producto.categ]} alt={producto.categ} />
@@ -58,4 +57,4 @@ export const ItemDetailContainer = () => {
         })}            
     </>
     )
-}
+};

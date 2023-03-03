@@ -4,10 +4,9 @@ import { CartContextApp } from '../../CartContext';
 // un punto importante que nos llevó todo el día fue que el dato propagado por context NO puede ESTAR AFUERA de la FUNCIÓN COMPONENTE sino no se rompe completamente la app. (addToCart en este caso)
 
 export const ItemCount = (props)=>{
-    const {addToCart} = CartContextApp()
-    const {setStock} = CartContextApp()
-    const {stock} = CartContextApp()
+    const {addToCart} = CartContextApp();
 
+    const [stock, setStock] = useState(0);
     const [initialStock, setInitialStock] = useState(0);
     const [currentStock, setCurrentStock] = useState(0);
     const [count, setCount] = useState(0);

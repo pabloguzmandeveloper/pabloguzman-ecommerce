@@ -7,7 +7,7 @@ export const ItemListContainer = ()=>{
         <ItemCollectionI style={{color: "orange",
         background: "green",
         textAlign: "center",
-        fontSize: "18px"}} greeting={"Hola!!! buenos días!! Bienvenido a nuestro E-Comosano!!"} />
+        fontSize: "18px"}} greeting={"Hola!!! buenos días!! Bienvenido a nuestro E-CommerceSano!!"} />
     )
 };
 

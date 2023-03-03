@@ -21,18 +21,22 @@ console.log(cartList)
     const [ nombre , setNombre] = useState("");
     const [ telefono , setTelefono] = useState("");
     const [ email , setEmail] = useState("");
-    const [ purchase , setPurchase ] = useState([]);
-    const [formIncomplete, setFormIncomplete] = useState(false);
+    // const [formIncomplete, setFormIncomplete] = useState(false);
 
 console.log(nombre, telefono, email, orderId)
     const dbOrders = collection(dbComosano,"orders")
-
+// creamos objeto para capturar los inputs
     const orderUser = {
         buyer:{name:nombre, phone:telefono, email:email},
         items:cartList,
         total:totalPrice
     };
-    
+// agregamos a firestore el objeto de los inputs
+    const purchaseOrder = async () => {
+        console.log("función purchaseOrden ejecutada");
+        await addDoc(dbOrders,orderUser)
+    };
+// capturamos el id de firestore para mostrarlo al user
     const fetchOrders = async ()=> {
       try {
           setLoading(true);
@@ -49,13 +53,14 @@ console.log(nombre, telefono, email, orderId)
           setError(error);
       }
     };
-
-
+// función del botón para activar los procesos de arriba
+    const handleSubmit = (event) => {
+      event.preventDefault();
       
-
-      
-    
-
+        console.log(orderUser);
+        purchaseOrder();
+        fetchOrders();
+// sweetalret sin saber como pasarle el id dentro
     // Swal.fire({
     //   title: 'COMPRA EXITOSA!',
     //   text: "GRACIAS POR SU CONFIANZA!",
@@ -73,29 +78,9 @@ console.log(nombre, telefono, email, orderId)
     //     )
     //   }
     // })
-   
-
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      
-        console.log(orderUser);
-        purchaseOrder();
-        fetchOrders();
-        
-        
-      
-
+    
     };
 
-// 2 Creamos función para guardar ordenes de compras en la base de datos
-    const purchaseOrder = async () => {
-        console.log("función purchaseOrden ejecutada");
-        // const ordersCollection = collection(dbComosano,"orders");
-        await addDoc(dbOrders,purchase)
-    };
-                    //.then(({id})=>setOrderId(id))
-
-// LAS DOS FUNCIONES LA HEMOS PROBADO DENTRO DEL useEffect DEL COMPONENTE ItemCollectionI Y FUNCIONA, ACÁ NO FUNCIONA APARENTEMENTE PORQUE NO ESTA LIGADO A UNA RUTA O COMPONENTES CON RUTAS, SINO EXISTE EN LAS RUTAS ESTE ARCHIVO CON SUS FUNCIONES NI SE EJECUTAN EN LA COMPILACIÓN.
 
     return (
       <>

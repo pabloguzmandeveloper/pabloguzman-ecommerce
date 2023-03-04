@@ -17,7 +17,7 @@ export const RouterApp = () => {
                 <Route path="/category/:categoryId"   element={<ItemListContainer />} />
                 <Route path="/item/:productId"        element={<ItemDetailContainer />} />
                 <Route path="/productslist"           element={<ProductsList />} />
-                <Route path="/cartcheck"       element={<CartCheck />} />
+                <Route path="/cartcheck"              element={<CartCheck />} />
                 <Route path="/stores"                 element={<Stores />} />
                 <Route path="*"                       element={<Error404 />} />
             </Routes>

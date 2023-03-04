@@ -1,17 +1,45 @@
 import { imagesMap } from '../../images/imagesMap.js';
 import './index.css';
 import { useEffect , useState } from 'react';
-import { useParams , Link } from 'react-router-dom';//cuidado que retorna numeros en strings
+import { useParams , Link , useNavigate } from 'react-router-dom';//cuidado que retorna numeros en strings
 import { ItemDetail } from '../ItemDetail';
 import { CartContextApp } from '../../CartContext';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+function MyVerticallyCenteredModal(props) {
+    const navigate = useNavigate();
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            {props.product.name}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <img className='img-detail' src={imagesMap[props.product.categ]} alt={props.product.categ} />
+            <ItemDetail product={props.product} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={()=>navigate(`/category/${props.product.categ}`)}>Cerrar</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+};
 
 export const ItemDetailContainer = () => {
     const {dataCollection} = CartContextApp();
     const {productId} = useParams();
     // 1 configurarmos hooks
-    const [ loading , setLoading] = useState([false]);
-    const [ error , setError ] = useState([null]);
-    const [ item, setItem ] = useState([]);
+    const [loading,setLoading] = useState([false]);
+    const [error,setError] = useState([null]);
+    const [item,setItem] = useState([]);
+    const [modalShow,setModalShow] = useState(true);
 // console.log(item)
     // 3 la funcion para mostrar todos los docs la creamos dentro del hook por ahorrar pasos de asincronía
     useEffect(() => {
@@ -38,13 +66,10 @@ export const ItemDetailContainer = () => {
         {item.map((producto)=>{
             return (
                 <div key={producto.id}>
-                    <Link to={'/'} >
-                        <h3>{"Volver a la lista - seguir comprando!!"}</h3>
-                    </Link>
-            
-                    <img className='img-detail' src={imagesMap[producto.categ]} alt={producto.categ} />
-                    <h4>{producto.name}</h4>
-                    <ItemDetail product={producto} />            
+                    <MyVerticallyCenteredModal
+                        product={producto}
+                        show={modalShow}
+                    />            
                 </div>
             )
         })}            

@@ -1,17 +1,26 @@
 import { ItemList } from '../ItemList';
 import { useState , useEffect } from 'react';
-import { useParams , Link } from "react-router-dom";
+import { useNavigate , useParams , Link } from "react-router-dom";
 import { collection , getDocs } from "firebase/firestore"; //métodos de firestore para crear los módulos de consulta y pedidos a firestore
 import { dbComosano } from '../../firebaseConfig/firebase.js';
 import { CartContextApp } from '../../CartContext';
+import Accordion from 'react-bootstrap/Accordion';
 
 export const ItemCollectionI = (props) => {
-    const {dataCollection,setDataCollection} = CartContextApp();
+    const navigate = useNavigate();
     const {categoryId} = useParams();
+    const [activeCategory, setActiveCategory] = useState(categoryId);
+
+    const handleAccordionClick = (eventKey) => {
+        // redirigir a la ruta deseada
+        navigate(`/category/${eventKey}`);
+    }
+
+    const {dataCollection,setDataCollection} = CartContextApp();
+    
     // 1 configurarmos hooks
     const [ loading , setLoading] = useState([false]);
-    const [ error , setError ] = useState([null]);
-    
+    const [ error , setError ] = useState([null]);    
     const [ categories, setCategories ] = useState([]);
     // 2 referenciamos la db de firestore
     const dbComosanoFirestore = collection(dbComosano,"comosanoProductos")
@@ -31,6 +40,7 @@ export const ItemCollectionI = (props) => {
             }
         };
         fetchData();
+        setActiveCategory(categoryId);
     }, [categoryId]);
 
     return(
@@ -38,85 +48,123 @@ export const ItemCollectionI = (props) => {
             <h2 style={props.style}>{props.greeting}</h2>
             {console.log(categoryId)}
             {console.log(categories)}
-            
-            <Link to={'/category/harinas'}>HARINAS DE MAIZ Y VARIOS</Link>
-            <ul>
-                {categoryId==="harinas"? categories.map((category)=>{
-                    //la key unicamente la puedo establecer donde etá el .map() no dentro del componente ItemList
-                    return ( 
-                        <li key={category.id}>  
-                            <ItemList productsList={category}/>
-                        </li>
-                    )
-                }):""}
-            </ul>
 
-            <Link to={'/category/frutas'}>FRUTAS</Link>
-            <ul>
-                {categoryId==="frutas"?categories.map((category)=>{
-                    return (                            
-                        <li key={category.id}>
-                            <ItemList productsList={category}/>
-                        </li>                        
-                    )
-                }):""}
-            </ul>
+            <Accordion>
+            <Accordion.Item eventKey="harinas">
+                <Accordion.Header onClick={() => handleAccordionClick('harinas')}>
+                    HARINAS DE MAIZ Y VARIOS
+                </Accordion.Header>
+                <Accordion.Body>
+                    <ul>
+                        {activeCategory==="harinas"? categories.map((category)=>{
+                            //la key unicamente la puedo establecer donde etá el .map() no dentro del componente ItemList
+                            return (
+                                <li key={category.id}>
+                                    <ItemList productsList={category}/>
+                                </li>
+                            )  
+                        }):""}
+                    </ul>
+                </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="frutas">
+                <Accordion.Header onClick={() => handleAccordionClick('frutas')}>
+                    FRUTAS
+                </Accordion.Header>
+                <Accordion.Body>
+                    <ul>
+                        {categoryId==="frutas"?categories.map((category)=>{
+                            return (                            
+                                <li key={category.id}>
+                                    <ItemList productsList={category}/>
+                                </li>                        
+                            )
+                        }):""}
+                    </ul>
+                </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="quesos">
+                <Accordion.Header onClick={() => handleAccordionClick('quesos')}>
+                    QUESOS
+                </Accordion.Header>
+                <Accordion.Body>
+                    <ul>
+                        {activeCategory==="quesos"?categories.map((category)=>{
+                            return (
+                                <li key={category.id}>
+                                    <ItemList productsList={category}/>
+                                </li>
+                            )
+                        }):""}
+                    </ul>
+                </Accordion.Body>
+            </Accordion.Item>
 
-            <Link to={'/category/quesos'}>QUESOS</Link>
-            <ul>
-                {categoryId==="quesos"?categories.map((category)=>{
-                    return (
-                        <li key={category.id}>
-                            <ItemList productsList={category}/>
-                        </li>
-                    )
-                }):""}
-            </ul>
-
-            <Link to={'/category/salsas_y_cremas'}>SALSAS Y CREMAS</Link>
-            <ul>
-                {categoryId==="salsas_y_cremas"?categories.map((category)=>{
-                    return (
-                        <li key={category.id}>
-                            <ItemList productsList={category}/>
-                        </li>
-                    )
-                }):""}
-            </ul>
-
-            <Link to={'/category/bebidas'}>BEBIDAS Y MÁS</Link>
-            <ul>
-                {categoryId==="bebidas"?categories.map((category)=>{
-                    return (
-                        <li key={category.id}>
-                            <ItemList productsList={category}/>
-                        </li>
-                    )
-                }):""}
-            </ul>
-
-            <Link to={'/category/golosinas'}>GOLOSINAS</Link>
-            <ul>
-                {categoryId==="golosinas"?categories.map((category)=>{
-                    return (
-                        <li key={category.id}>
-                            <ItemList productsList={category}/>
-                        </li>
-                    )
-                }):""}
-            </ul>
-
-            <Link to={'/category/varios'}>VARIOS</Link>
-            <ul>
-                {categoryId==="varios"?categories.map((category)=>{
-                    return (
-                        <li key={category.id}>
-                            <ItemList productsList={category}/>
-                        </li>
-                    )
-                }):""}
-            </ul>
-            
+            <Accordion.Item eventKey="salsas_y_cremas">
+                <Accordion.Header onClick={() => handleAccordionClick('salsas_y_cremas')}>
+                    SALSAS Y CREMAS
+                </Accordion.Header>
+                <Accordion.Body>
+                    <ul>
+                        {activeCategory==="salsas_y_cremas"?categories.map((category)=>{
+                            return (
+                                <li key={category.id}>
+                                    <ItemList productsList={category}/>
+                                </li>
+                            )
+                        }):""}
+                    </ul>
+                </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="bebidas">
+                <Accordion.Header onClick={() => handleAccordionClick('bebidas')}>
+                    BEBIDAS Y MÁS
+                </Accordion.Header>
+                <Accordion.Body>
+                    <ul>
+                        {activeCategory==="bebidas"?categories.map((category)=>{
+                            return (
+                                <li key={category.id}>
+                                    <ItemList productsList={category}/>
+                                </li>
+                            )
+                        }):""}
+                    </ul>
+                </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="golosinas">
+                <Accordion.Header onClick={() => handleAccordionClick('golosinas')}>
+                    GOLOSINAS
+                </Accordion.Header>
+                <Accordion.Body>
+                    <ul>
+                        {categoryId==="golosinas"?categories.map((category)=>{
+                            return (
+                                <li key={category.id}>
+                                    <ItemList productsList={category}/>
+                                </li>
+                            )
+                        }):""}
+                    </ul>
+                </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="varios">
+                <Accordion.Header onClick={() => handleAccordionClick('varios')}>
+                    VARIOS
+                </Accordion.Header>
+                <Accordion.Body>
+                    <ul>
+                        {categoryId==="varios"?categories.map((category)=>{
+                            return (
+                                <li key={category.id}>
+                                    <ItemList productsList={category}/>
+                                </li>
+                            )
+                        }):""}
+                    </ul>
+                </Accordion.Body>
+            </Accordion.Item>
+            </Accordion>
         </div>
     )
 };

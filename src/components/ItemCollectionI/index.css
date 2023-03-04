@@ -1,0 +1,22 @@
+/* *{
+    margin: 0px;
+    padding: 0px;    
+    box-sizing: border-box;
+} */
+body {
+
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.item-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}

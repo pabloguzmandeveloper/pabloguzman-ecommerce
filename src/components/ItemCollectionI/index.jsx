@@ -1,3 +1,4 @@
+import './index.css';
 import { ItemList } from '../ItemList';
 import { useState , useEffect } from 'react';
 import { useNavigate , useParams , Link } from "react-router-dom";
@@ -41,12 +42,13 @@ export const ItemCollectionI = (props) => {
         };
         fetchData();
         setActiveCategory(categoryId);
+        {console.log(categoryId)}
     }, [categoryId]);
 
     return(
         <div className="item-list-container">
             <h2 style={props.style}>{props.greeting}</h2>
-            {console.log(categoryId)}
+            
             {console.log(categories)}
 
             <Accordion>

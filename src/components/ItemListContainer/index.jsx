@@ -1,4 +1,5 @@
 import { ItemCollectionI } from "../ItemCollectionI";
+import './index.css';
 
 export const ItemListContainer = ()=>{
     return(

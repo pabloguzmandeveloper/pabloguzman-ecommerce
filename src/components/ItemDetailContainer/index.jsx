@@ -47,7 +47,7 @@ export const ItemDetailContainer = () => {
             try {
                 setLoading(true);
                 const items = dataCollection.docs.map((doc) =>({...doc.data(),id:doc.id}));
-                // console.log(items)                
+                // console.log(items)
                 let productos= items.filter(producto => !productId || producto.id === productId);
                 // console.log(productos[0])
                 setItem(productos)

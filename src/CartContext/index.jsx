@@ -6,6 +6,7 @@ export const CartContextApp = () => useContext(CreateContextAdd);
 
 export const CartContextProvider = ({children}) => {
     const [dataCollection, setDataCollection] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
     const [cartList, setCartList] = useState([]);
     
     const addToCart = (objectInput) => {
@@ -32,7 +33,19 @@ export const CartContextProvider = ({children}) => {
     const iconCart = () => cartList.reduce((acc, cur) => acc + cur.quantity, 0);
 
     return (
-        < CreateContextAdd.Provider value={{dataCollection,setDataCollection,cartList,setCartList,iconCart,addToCart,removeList,deletItem,totalPrice}}>
+        < CreateContextAdd.Provider value={{
+            allProducts,
+            setAllProducts,
+            dataCollection,
+            setDataCollection,
+            cartList,
+            setCartList,
+            iconCart,
+            addToCart,
+            removeList,
+            deletItem,
+            totalPrice
+        }}>
             {children}
         </CreateContextAdd.Provider>
     )

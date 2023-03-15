@@ -7,26 +7,32 @@ import CartWidget from '../CartWidget';
 import Logo from '../../images/logo.png';
 import LogoWhite from '../../images/logoWhite.png';
 import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const NavigationBar = ({ visible }) => (
     <div id="navbar__menu" className={visible ? 'slideIn swing' : 'slideOut'} >
-        <ul>
-            <li>
-                <Link to='/cartorders'>Comprar por Whatsapp</Link>
-            </li>
-            <li>
-                <Link to='/productslist'>Lista de productos</Link>
-            </li>
-            <li>
-                <Link to='/stores'>Sucursales</Link>
-            </li>
-            <li>
-                <Link to='/aboutus'>Acerca de nosotros</Link>
-            </li>
-        </ul>
-        <div className='menuLogo'>
+        <div className="menu__container">
             <img className="logoWhite" src={LogoWhite} alt="COMOSANO" />
-        </div>    
+
+            <ButtonGroup vertical>
+                <Button>Comprar por Whatsapp
+                    <Link to='/cartorders'></Link>
+                </Button>
+                <Button>Lista de productos
+                    <Link to='/productslist'></Link>
+                </Button>
+                <Button>Sucursales
+                    <Link to='/stores'></Link>
+                </Button>
+                <Button>Acerca de nosotros
+                    <Link to='/aboutus'></Link>
+                </Button>
+            </ButtonGroup>
+
+        </div>   
     </div>
 );
 

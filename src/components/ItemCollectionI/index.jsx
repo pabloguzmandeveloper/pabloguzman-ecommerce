@@ -17,7 +17,7 @@ export const ItemCollectionI = (props) => {
         navigate(`/category/${eventKey}`);
     }
 
-    const {dataCollection,setDataCollection} = CartContextApp();
+    const {setAllProducts,dataCollection,setDataCollection} = CartContextApp();
     
     // 1 configurarmos hooks
     const [ loading , setLoading] = useState([false]);
@@ -31,9 +31,9 @@ export const ItemCollectionI = (props) => {
             try {
                 setLoading(true);
                 const data = await getDocs(dbComosanoFirestore);
+                const allProds = data.docs.map((doc) =>({...doc.data(),id:doc.id}));
                 setDataCollection(data);
-                const categories1 = data.docs.map((doc) =>({...doc.data(),id:doc.id}));
-                setCategories(categories1.filter(item => !categoryId || item.categ === categoryId));
+                setAllProducts(allProds)
                 setLoading(false);
             } catch (error) {
                 setLoading(false);
@@ -41,6 +41,22 @@ export const ItemCollectionI = (props) => {
             }
         };
         fetchData();
+        
+    }, []);
+
+    useEffect(() => {
+        const fetchDataId = async () => {
+            try {
+                setLoading(true);
+                const categories1 = dataCollection.docs.map((doc) =>({...doc.data(),id:doc.id}));
+                setCategories(categories1.filter(item => !categoryId || item.categ === categoryId));
+                setLoading(false);
+            } catch (error) {
+                setLoading(false);
+                setError(error);
+            }
+        };
+        fetchDataId();
         setActiveCategory(categoryId);
         {console.log(categoryId)}
     }, [categoryId]);

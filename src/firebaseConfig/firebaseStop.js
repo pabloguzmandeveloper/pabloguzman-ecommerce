@@ -6,12 +6,12 @@ import {getFirestore} from "@firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyC4tHkG-Yg_PA6q3UriohmoiTq279jyKYA",
-    authDomain: "ecommerce-guzman.firebaseapp.com",
-    projectId: "ecommerce-guzman",
-    storageBucket: "ecommerce-guzman.appspot.com",
-    messagingSenderId: "761522343645",
-    appId: "1:761522343645:web:c6066d9c435b72e1435534"
+  apiKey: "AIzaSyCFI6OwCbtM4y6k7KNiUB7zVP9gN2UbcAo",
+  authDomain: "pabloguzam-ecommerce.firebaseapp.com",
+  projectId: "pabloguzam-ecommerce",
+  storageBucket: "pabloguzam-ecommerce.appspot.com",
+  messagingSenderId: "5004127876",
+  appId: "1:5004127876:web:febf3da39048f0fff09cd1"
 };
 
 // Initialize Firebase

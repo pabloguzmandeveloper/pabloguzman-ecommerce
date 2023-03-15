@@ -2,18 +2,18 @@ import {BrowserRouter} from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
 import { RouterApp } from './router/RouterApp';
-import { CartContextProvider } from './CartContext';
-import { CarouselNews } from './components/CarouselNews';
+import { CartContextApp } from './CartContext';
+// import { CarouselNews } from './components/CarouselNews';
+
 
 function App() {
+  const {allProducts} = CartContextApp();
   return (
-    <CartContextProvider>
       <BrowserRouter>      
-        <NavBar/>
-        <CarouselNews />
+        <NavBar/>        
+        {/* <CarouselNews props={allProducts} /> */}
         <RouterApp />
       </BrowserRouter>
-    </CartContextProvider>
   );
 }
 export default App;

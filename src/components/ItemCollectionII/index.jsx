@@ -1,7 +1,7 @@
 import { useParams , useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { CartContextApp } from '../../CartContext';
-import {collection,getDocs,doc,updateDoc,addDoc} from "firebase/firestore";
+import {collection,getDocs,doc,updateDoc,addDoc,serverTimestamp} from "firebase/firestore";
 import { dbComosano } from '../../firebaseConfig/firebase.js';
 import Swal from 'sweetalert2';
 import {Form, Button , Container} from 'react-bootstrap';
@@ -19,15 +19,17 @@ console.log(cartList)
     const [ nombre , setNombre] = useState("");
     const [ telefono , setTelefono] = useState("");
     const [ email , setEmail] = useState("");
-    // const [formIncomplete, setFormIncomplete] = useState(false);
+    const [confirmEmail, setConfirmEmail] = useState("");
+    const [validated, setValidated] = useState(false);
 
-console.log(nombre, telefono, email)
+// console.log(nombre, telefono, email)
     const dbOrders = collection(dbComosano,"orders")
 // creamos objeto para capturar los Form.Controls
     const orderUser = {
         buyer:{name:nombre, phone:telefono, email:email},
         items:cartList,
-        total:totalPrice
+        total:totalPrice,
+        date:serverTimestamp()
     };
 // agregamos a firestore el objeto de los Form.Controls
     const purchaseOrder = async () => {
@@ -70,11 +72,21 @@ console.log(nombre, telefono, email)
     };
 // función del botón para activar los procesos de arriba
     const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(orderUser);
-        purchaseOrder();
-        fetchOrders();
+        const form = event.currentTarget;
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }  
+        setValidated(true);
 
+        event.preventDefault();
+          if (email === confirmEmail) {
+            purchaseOrder();
+            fetchOrders();
+          } else {
+            alert('Por favor revise si los correos coinciden');
+          }
+        console.log(orderUser);
     };
 
     return (
@@ -89,10 +101,11 @@ console.log(nombre, telefono, email)
         <Card.Body>
           <Card.Title>Datos para registrar su pedido</Card.Title>
           <Container>
-            <Form >
+            <Form noValidate validated={validated}>
               <Form.Group>
                 Nombre:
                 <Form.Control
+                  required
                   type="text"
                   value={nombre}
                   onChange={(event) => setNombre(event.target.value)}
@@ -102,23 +115,37 @@ console.log(nombre, telefono, email)
               <Form.Group>
                 Teléfono:
                 <Form.Control
+                  required
                   type="tel"
                   value={telefono}
                   onChange={(event) => setTelefono(event.target.value)}
                 />
               </Form.Group>
               <br />
-              <Form.Group>
-                Correo electrónico:
+              <Form.Group controlId="formBasicEmail">
+                Dirección de Email
                 <Form.Control
-                  type="email"
-                  value={email}
+                  required
                   onChange={(event) => setEmail(event.target.value)}
+                  value={email}
+                  type="email"
+                  placeholder="Ingrese su email"
+                />
+              </Form.Group>
+              <br />
+              <Form.Group controlId="formBasicConfirmEmail">
+                Confirmar dirección de Email
+                <Form.Control
+                  required
+                  onChange={(event) => setConfirmEmail(event.target.value)}
+                  value={confirmEmail}
+                  type="email"
+                  placeholder="Confirme su email"
                 />
               </Form.Group>
               <br />
             </Form>
-            <Button onClick={handleSubmit}>Finalizar pedido</Button>
+            <Button onClick={handleSubmit} variant="primary">Finalizar pedido</Button>
             <br></br>
             <Button onClick={()=>navigate('/')}>Cancelar y volver a la lista de productos</Button>
           </Container>

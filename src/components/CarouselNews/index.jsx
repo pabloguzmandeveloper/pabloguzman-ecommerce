@@ -1,18 +1,74 @@
+import './CarouselNews.css';
 import { useState , useEffect } from 'react';
-import { CartContextApp } from '../../CartContext';
+import Carousel from 'react-bootstrap/Carousel';
+import CardGroup from 'react-bootstrap/CardGroup';
+import Card from 'react-bootstrap/Card';
+import { Item } from '../Item';
 
+export const CarouselNews = ({props}) => {
+    {console.log("props carousel"+props)}
+    const [index, setIndex] = useState(0);
 
-export const CarouselNews = () => {
-    const {allProducts} = CartContextApp();
-    console.log(allProducts);
+    const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+    };
 
-    // const [prodCarousel,setProdCarousel] = useState([]);
+    return (
+        <Carousel className="w-90" activeIndex={index} onSelect={handleSelect}>
+        <Carousel.Item>
+            <CardGroup className="w-90" responsive="sm">
+                
+                    {console.log("props de carousel"+props)}
+                    {props.slice(0, 3).map((prod)=>{
+                        return (
+                            <Card key={prod.id}>
+                                <Item product={prod} />
+                            </Card>
+                        )
+                    })}
+                
+            </CardGroup>
+        
+        <Carousel.Caption>
+            <h3>TU GUSTO PUEDE ESTAR AQUI</h3>
+        </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+            <CardGroup className="w-90">
+                
+                    {console.log("props de carousel"+props)}
+                    {props.slice(23, 26).map((prod)=>{
+                        return (
+                            <Card key={prod.id}>
+                                <Item product={prod} />
+                            </Card>
+                        )
+                    })}
+                
+            </CardGroup>
 
-    const arrayId = [12,15,21, 24,45,25, 38,33,20];
+        <Carousel.Caption>
+            <h3>PASIÓN EN SABORES TROPICALES</h3>
+        </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+            <CardGroup className="w-90">
+                
+                    {console.log("props de carousel"+props)}
+                    {props.slice(36, 39).map((prod)=>{
+                        return (
+                            <Card key={prod.id}>
+                                <Item product={prod} />
+                            </Card>
+                        )
+                    })}
+                
+            </CardGroup>
 
-    const arrayCarouselList = arrayId.map(index => allProducts[index]);
-console.log(arrayCarouselList);
-
-
-
-}
+        <Carousel.Caption>
+            <h3>LAS MEJORES OFERTAS</h3>
+        </Carousel.Caption>
+        </Carousel.Item>
+    </Carousel>
+    );
+};

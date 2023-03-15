@@ -1,5 +1,5 @@
 .img-item {
-    width: 80vw;
+    width: auto;
     height: 5vw;
     object-fit: cover;
 }

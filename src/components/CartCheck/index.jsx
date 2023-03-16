@@ -4,6 +4,15 @@ import { CartContextApp } from '../../CartContext';
 import { ItemCollectionII } from '../ItemCollectionII';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import styled from 'styled-components';
+
+const StyledCard = styled.div`
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #ccc;
+    background-color: #e8f5e9;
+    padding: 20px;
+`;
 
 function MyVerticallyCenteredModal(props) {
     return (
@@ -59,7 +68,11 @@ export const CartCheck = () => {
                     onHide={() => setModalShow(false)}
                 />                
             </>:
-            <Link to="/">Carrito de compras está vacío!! - Ir a listado de productos</Link>
+            <StyledCard>
+              
+              <Link to="/"><h2>Carrito de compras está vacío!! - Ir a listado de productos</h2></Link>
+            </StyledCard>
+            
             }            
         </ul>
     )

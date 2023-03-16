@@ -6,38 +6,38 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import CartWidget from '../CartWidget';
 import Logo from '../../images/logo.png';
 import LogoWhite from '../../images/logoWhite.png';
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
-const NavigationBar = ({ visible }) => (
+const NavigationBar = ({ visible }) => {
+    const navigate = useNavigate();    
+    return (
     <div id="navbar__menu" className={visible ? 'slideIn swing' : 'slideOut'} >
         <div className="menu__container">
             <img className="logoWhite" src={LogoWhite} alt="COMOSANO" />
 
             <ButtonGroup vertical>
-                <Button>Comprar por Whatsapp
-                    <Link to='/cartorders'></Link>
+                <Button onClick={()=>navigate("/cartcheck")}>
+                    Comprar por Whatsapp
                 </Button>
-                <Button>Lista de productos
-                    <Link to='/productslist'></Link>
+                <Button onClick={()=>navigate("/productslist")}>
+                    Lista de productos
                 </Button>
-                <Button>Sucursales
-                    <Link to='/stores'></Link>
+                <Button onClick={()=>navigate('/stores')}>
+                    Sucursales
                 </Button>
-                <Button>Acerca de nosotros
-                    <Link to='/aboutus'></Link>
+                <Button onClick={()=>navigate('/aboutus')}>
+                    Acerca de nosotros
                 </Button>
             </ButtonGroup>
-
         </div>   
-    </div>
-);
+    </div>)
+};
 
 function NavBar (){
     const [ visibility , setVisibility ] = useState(false);
-    const handleClick = ()=>{ setVisibility(!visibility)
-
+    const handleClick = ()=>{ setVisibility(!visibility);
     }
     return(
         <div id="NavBar">

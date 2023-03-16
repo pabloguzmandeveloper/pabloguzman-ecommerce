@@ -1,15 +1,16 @@
 import { useParams , useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { CartContextApp } from '../../CartContext';
-import {collection,getDocs,addDoc,serverTimestamp} from "firebase/firestore";
+import {collection,getDocs,doc,updateDoc,addDoc,serverTimestamp} from "firebase/firestore";
 import { dbComosano } from '../../firebaseConfig/firebase.js';
 import Swal from 'sweetalert2';
 import {Form, Button , Container} from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 
 export const ItemCollectionII = () => {
     const navigate = useNavigate();
-    const {totalPrice,cartList,setCartList} = CartContextApp();
+    const {totalPrice,deletItem,removeList,cartList,setCartList} = CartContextApp();
 console.log(cartList)
     const {order} = useParams();
     console.log("id ruta de ItemCollectionII "+order)
@@ -70,19 +71,54 @@ console.log(cartList)
       })
       setCartList([])
     };
+// función del botón para activar los procesos anteriores
 
+    // function AlertDismissible() {
+    //   const [show, setShow] = useState(true);
+
+    //   if (show) {
+    //     return (
+    //       <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+    //         <Alert.Heading>Oh! Hay un pequeño error!</Alert.Heading>
+    //         <p>
+    //           Por favor revise si los correos coinciden
+    //         </p>
+    //       </Alert>
+    //     );
+    //   }
+    // };
+const [show, setShow] = useState(true);
     const handleSubmit = (event) => {
-      event.preventDefault();
-      const form = event.currentTarget;
-      setValidated(true);
-      if (form.checkValidity() === true && nombre && telefono && email && confirmEmail && email === confirmEmail) {
-        purchaseOrder();
-        fetchOrders();
-      } else {
-        event.stopPropagation();
-        alert('Por favor revise si los correos coinciden y si los campos están completos');
-      }
+        const form = event.currentTarget;
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }  
+        setValidated(true);
+
+        event.preventDefault();
+          if (email === confirmEmail) {
+            purchaseOrder();
+            fetchOrders();
+          } else {
+            setShow(true);
+          }
+        console.log(orderUser);
     };
+
+    function AlertDismissible() {
+      
+    
+      if (show) {
+        return (
+          <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+            <Alert.Heading>Oh! Hay un pequeño error!</Alert.Heading>
+            <p>Por favor revise si los correos coinciden</p>
+          </Alert>
+        );
+      }
+      return null;
+    }
 
     return (
       <Card
@@ -96,7 +132,8 @@ console.log(cartList)
         <Card.Body>
           <Card.Title>Datos para registrar su pedido</Card.Title>
           <Container>
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          {show && <AlertDismissible setShow={setShow} />}
+            <Form noValidate validated={validated}>
               <Form.Group>
                 Nombre:
                 <Form.Control
@@ -105,9 +142,6 @@ console.log(cartList)
                   value={nombre}
                   onChange={(event) => setNombre(event.target.value)}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Por favor ingrese su nombre.
-                </Form.Control.Feedback>
               </Form.Group>
               <br />
               <Form.Group>
@@ -118,9 +152,6 @@ console.log(cartList)
                   value={telefono}
                   onChange={(event) => setTelefono(event.target.value)}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Por favor ingrese su telefono.
-                </Form.Control.Feedback>
               </Form.Group>
               <br />
               <Form.Group controlId="formBasicEmail">
@@ -132,9 +163,6 @@ console.log(cartList)
                   type="email"
                   placeholder="Ingrese su email"
                 />
-                <Form.Control.Feedback type="invalid">
-                  Por favor ingrese su email.
-                </Form.Control.Feedback>
               </Form.Group>
               <br />
               <Form.Group controlId="formBasicConfirmEmail">
@@ -146,13 +174,10 @@ console.log(cartList)
                   type="email"
                   placeholder="Confirme su email"
                 />
-                <Form.Control.Feedback type="invalid">
-                  Por favor confirme su email.
-                </Form.Control.Feedback>
               </Form.Group>
               <br />
             </Form>
-            <Button type="submit" onClick={handleSubmit} variant="primary">Finalizar pedido</Button>
+            <Button onClick={handleSubmit} variant="primary">Finalizar pedido</Button>
             <br></br>
             <Button onClick={()=>navigate('/')}>Cancelar y volver a la lista de productos</Button>
           </Container>

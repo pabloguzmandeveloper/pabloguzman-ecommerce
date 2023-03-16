@@ -9,8 +9,6 @@ import LogoWhite from '../../images/logoWhite.png';
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const NavigationBar = ({ visible }) => (
     <div id="navbar__menu" className={visible ? 'slideIn swing' : 'slideOut'} >

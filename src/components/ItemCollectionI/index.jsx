@@ -44,10 +44,7 @@ export const ItemCollectionI = (props) => {
         };
         fetchData();
         
-    },[]);
-console.log(allProducts)
-
-
+    },[]);console.log(allProducts)
 
     useEffect(() => {
         const fetchDataId = async () => {
@@ -66,22 +63,17 @@ console.log(allProducts)
         {console.log(categoryId)}
     }, [categoryId]);
 
-    return(
-        
+    return(        
         <div className="item-list-container">
-            <h2 style={props.style}>{props.greeting}</h2>
-            
-            {console.log(categories)}
-
+            <h2 style={props.style}>{props.greeting}</h2>{console.log(categories)}
             <Accordion>
             <Accordion.Item eventKey="harinas">
                 <Accordion.Header onClick={() => handleAccordionClick('harinas')}>
                     HARINAS DE MAIZ Y VARIOS
                 </Accordion.Header>
-                <Accordion.Body>
-                    
+                <Accordion.Body>                    
                         {activeCategory==="harinas"? categories.map((category)=>{
-            // la key unicamente la puedo establecer donde etá el .map() no dentro del componente ItemList
+// la key unicamente la puedo establecer donde etá el .map() no dentro del componente ItemList
                             return (
                                 <div key={category.id}>
                                     <ItemList productsList={category}/>

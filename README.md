@@ -28,6 +28,9 @@ El menú hamburguesa cuenta con un efecto de estilo para ser desplegado de forma
 
 - [x] ["firebase": "^9.17.1"](https://firebase.google.com) : Biblioteca donde asentamos la pequeña base de datos con el recurso de Firestore, base de datos para la lista de los productos con sus categorías y otra base de datos con las ordenes de compra. También usamos Firestore para subir un archivo json con código Javascript sin tener que usar la creación de cada producto desde la consola de Firestore.
  
-- [x] ["styled-components": "^5.3.9"](https://www.npmjs.com/package/styled-components) : Recurso para mesajes en los componentes de AboutUs, Stores y un link para avisar que el carrito está vacío en el componente CartCheck.
+- [x] ["styled-components": "^5.3.9"](https://www.npmjs.com/package/styled-components) : Recurso para mesajes en los componentes de AboutUs, Stores, un link para avisar que el carrito está vacío en el componente CartCheck y un título para la lista de los productos en el componente ProductList.
 
 - [x] ["sweetalert2": "^11.7.3","sweetalert2-react-content": "^5.0.7"](https://sweetalert2.github.io/) : Recurso para alertas muy visibles de fácil resultado responsivo y de agradable diseño para implementarlas rápidamente, hubo que configurar ciertas personalizaciones con botones y funciones afectadas a una alerta perteneciente a la confirmación de la compra. El punto negativo es que en todo momento el proyecto al instalar las dependencias en la consola refleja warnings que son de nula solución desde mi experiencia e impide el deployado al menos en Netlify.
+
+
+![](./src/images/pabloGuzmanGif.gif)
